@@ -6,5 +6,10 @@ class GameCharacter :
 public:
 	GameCharacter();
 	~GameCharacter();
+
+	void GameCharacter::render();
+	void GameCharacter::loadFromFile();
+	void GameCharacter::saveToFile();
+
 };
 
