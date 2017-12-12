@@ -6,6 +6,7 @@ SDL2-2.0.4
 *.vcxproj
 *.vcxproj.filters
 *.suo
+*.vs
 
 images
 ProyectosSDL/README.txt
