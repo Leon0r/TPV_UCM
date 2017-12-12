@@ -1,0 +1,11 @@
+bin
+SDL2_image-2.0.1
+SDL2-2.0.4
+*.props
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.suo
+
+images
+ProyectosSDL/README.txt
