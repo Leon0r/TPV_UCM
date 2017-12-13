@@ -10,9 +10,11 @@ SDL2-2.0.4
 
 images
 ProyectosSDL/README.txt
+ProyectosSDL/HolaSDL/Debug
 
 *.pdb
 *.idb
 *.tlog
 Debug
 *.log
+*.VC.db
