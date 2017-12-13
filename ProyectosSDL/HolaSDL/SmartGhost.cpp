@@ -1,7 +1,6 @@
 #include "SmartGhost.h"
 
 
-
 SmartGhost::SmartGhost()
 {
 }

@@ -19,8 +19,9 @@ void GameObject::update() {
 
 }
 
-void GameObject::loadFromFile() {
+void GameObject::loadFromFile(const char* fileName) {
 
+	ifstream level
 }
 
 void GameObject::saveToFile() {

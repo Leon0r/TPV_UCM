@@ -1,2 +1,21 @@
+<<<<<<< Updated upstream
 ﻿  HolaSDL.vcxproj -> C:\Users\nuria\Documents\UCM\2017-2018\TPV\Ejercicios\Practica2\TPV_UCM\ProyectosSDL\bin\HolaSDLDebug.exe
   HolaSDL.vcxproj -> C:\Users\nuria\Documents\UCM\2017-2018\TPV\Ejercicios\Practica2\TPV_UCM\ProyectosSDL\bin\HolaSDLDebug.pdb (Full PDB)
+=======
+﻿  main.cpp
+  Textures.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\Textures.cpp': No such file or directory
+  SmartGhost.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\SmartGhost.cpp': No such file or directory
+  Pacman.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\Pacman.cpp': No such file or directory
+  Ghost.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\Ghost.cpp': No such file or directory
+  GameObject.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\GameObject.cpp': No such file or directory
+  GameMap.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\GameMap.cpp': No such file or directory
+  GameCharacter.cpp
+c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\GameCharacter.cpp': No such file or directory
+  Generando código...
+>>>>>>> Stashed changes

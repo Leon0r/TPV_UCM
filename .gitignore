@@ -15,3 +15,4 @@ ProyectosSDL/README.txt
 *.idb
 *.tlog
 Debug
+*.log
