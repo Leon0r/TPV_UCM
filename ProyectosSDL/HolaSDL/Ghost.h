@@ -9,5 +9,7 @@ class Ghost :
 public:
 	Ghost();
 	~Ghost();
+
+	void Ghost::update();
 };
 
