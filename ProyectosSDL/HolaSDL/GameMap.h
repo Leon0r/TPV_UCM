@@ -9,5 +9,9 @@ class GameMap :
 public:
 	GameMap();
 	~GameMap();
+
+	void GameMap::loadFromFile();
+	void GameMap::saveToFile();
+	void GameMap::update();
 };
 

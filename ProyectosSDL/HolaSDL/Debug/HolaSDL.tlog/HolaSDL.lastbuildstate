@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.16299.0
-Debug|Win32|D:\Uni\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\|
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+Debug|Win32|C:\Users\nuria\Documents\UCM\2017-2018\TPV\Ejercicios\Practica2\TPV_UCM\ProyectosSDL\|
