@@ -1,5 +1,9 @@
 #pragma once
+#include "SDL.h"
+#include "SDL_image.h"
+
 #include "GameCharacter.h"
+
 class Pacman :
 	public GameCharacter
 {

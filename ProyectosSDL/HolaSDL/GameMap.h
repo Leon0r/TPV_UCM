@@ -1,5 +1,8 @@
 #pragma once
+#include "SDL.h"
+#include "SDL_image.h"
 #include "GameObject.h"
+
 class GameMap :
 	public GameObject
 {
