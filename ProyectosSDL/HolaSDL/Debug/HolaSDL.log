@@ -1,11 +1,2 @@
-﻿  Textures.cpp
-  SmartGhost.cpp
-  Pacman.cpp
-  main.cpp
-  Ghost.cpp
-  GameObject.cpp
-  GameMap.cpp
-  GameCharacter.cpp
-  Generando código...
-  HolaSDL.vcxproj -> C:\Users\nuria\Documents\UCM\2017-2018\TPV\Ejercicios\Practica2\TPV_UCM\ProyectosSDL\bin\HolaSDLDebug.exe
+﻿  HolaSDL.vcxproj -> C:\Users\nuria\Documents\UCM\2017-2018\TPV\Ejercicios\Practica2\TPV_UCM\ProyectosSDL\bin\HolaSDLDebug.exe
   HolaSDL.vcxproj -> C:\Users\nuria\Documents\UCM\2017-2018\TPV\Ejercicios\Practica2\TPV_UCM\ProyectosSDL\bin\HolaSDLDebug.pdb (Full PDB)

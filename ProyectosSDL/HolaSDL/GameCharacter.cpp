@@ -21,5 +21,5 @@ void GameCharacter::loadFromFile() {
 }
 
 void GameCharacter::saveToFile() {
-	GameObject::saveToFile;
+	GameObject::saveToFile();
 }
