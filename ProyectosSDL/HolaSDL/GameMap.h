@@ -6,6 +6,11 @@
 class GameMap :
 	public GameObject
 {
+private:
+	// Filas y columnas del mapa
+	unsigned int numRowMap,
+				 numColMap,
+				 cellSize;
 public:
 	GameMap();
 	~GameMap();
