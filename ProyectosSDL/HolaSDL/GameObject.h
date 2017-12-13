@@ -1,8 +1,9 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
-#include <iostream>
-#include <fstream> // Para los archivos de entrada/salida
+// Para los archivos de entrada/salida
+#include <fstream> 
+using namespace std;
 
 class GameObject
 {

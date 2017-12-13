@@ -1,7 +1,5 @@
 #include "GameObject.h"
 
-
-
 GameObject::GameObject()
 {
 }
@@ -21,7 +19,7 @@ void GameObject::update() {
 
 void GameObject::loadFromFile(const char* fileName) {
 
-	ifstream level("");
+	ifstream level(" ");
 }
 
 void GameObject::saveToFile() {

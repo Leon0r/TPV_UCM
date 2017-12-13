@@ -1,19 +1,13 @@
-<<<<<<< Updated upstream
-﻿  Textures.cpp
-c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\Textures.cpp': No such file or directory
-  SmartGhost.cpp
-c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\SmartGhost.cpp': No such file or directory
-  Pacman.cpp
-c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\Pacman.cpp': No such file or directory
-  Ghost.cpp
-c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\Ghost.cpp': No such file or directory
-  GameObject.cpp
-c1xx : fatal error C1083: No se puede abrir el archivo origen: '..\..\..\..\..\..\..\@ 2017-2018 (DV-2)\TPV-Tecnologia de la Programacion de Videojuegos\@ Practica_2\Practica2\TPV_UCM\ProyectosSDL\HolaSDL\GameObject.cpp': No such file or directory
-=======
-﻿  GameObject.cpp
->>>>>>> Stashed changes
-  GameMap.cpp
+﻿  GameMap.cpp
 c:\users\nuria\documents\ucm\2017-2018\tpv\ejercicios\practica2\tpv_ucm\proyectossdl\holasdl\gamemap.cpp(13): error C2660: 'GameObject::loadFromFile': la función no acepta 0 argumentos
   GameCharacter.cpp
 c:\users\nuria\documents\ucm\2017-2018\tpv\ejercicios\practica2\tpv_ucm\proyectossdl\holasdl\gamecharacter.cpp(20): error C2660: 'GameObject::loadFromFile': la función no acepta 0 argumentos
+  Generando código...
+  Compilando...
+  GameObject.cpp
+  Generando código...
+  Compilando...
+  SmartGhost.cpp
+  Pacman.cpp
+  Ghost.cpp
   Generando código...
