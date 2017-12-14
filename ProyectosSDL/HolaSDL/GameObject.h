@@ -8,8 +8,6 @@ using namespace std;
 class GameObject
 {
 private:
-
-	SDL_Renderer* renderer = nullptr;
 	SDL_Renderer * renderer = nullptr;
 
 public:
@@ -21,6 +19,5 @@ public:
 	void GameObject::loadFromFile(const char* fileName);
 	void GameObject::saveToFile();
 
-	
 };
 
