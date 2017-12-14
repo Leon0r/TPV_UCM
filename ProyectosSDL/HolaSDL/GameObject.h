@@ -10,6 +10,7 @@ class GameObject
 private:
 
 	SDL_Renderer* renderer = nullptr;
+	SDL_Renderer * renderer = nullptr;
 
 public:
 	GameObject();
