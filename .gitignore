@@ -136,3 +136,6 @@ SDL2_image-2.0.1
 SDL2-2.0.4
 images
 ProyectosSDL/README.txt
+
+*.vcxproj
+*.vcxproj.filters
