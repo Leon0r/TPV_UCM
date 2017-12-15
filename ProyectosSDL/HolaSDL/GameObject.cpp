@@ -17,8 +17,8 @@ void GameObject::update() {
 
 }
 
-void GameObject::loadFromFile(const char* fileName) {
-
+void GameObject::loadFromFile() {
+	const char* fileName;
 	ifstream level(" ");
 }
 

@@ -11,6 +11,15 @@ GameCharacter::~GameCharacter()
 {
 }
 
+void GameCharacter::loadCharacter(int x, int y, int cellSize, Textures * texture)
+{
+
+}
+
+void GameCharacter::update() {
+
+}
+
 void GameCharacter::render() {
 	GameObject::render();
 

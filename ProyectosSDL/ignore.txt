@@ -134,9 +134,3 @@ _Pvt_Extensions
 #SDL
 SDL2_image-2.0.1
 SDL2-2.0.4
-sprites
-levels
-ProyectosSDL/README.txt
-
-*.vcxproj
-*.vcxproj.filters

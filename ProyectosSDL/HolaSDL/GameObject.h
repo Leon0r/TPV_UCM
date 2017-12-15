@@ -1,14 +1,20 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Textures.h"
 // Para los archivos de entrada/salida
 #include <fstream> 
 using namespace std;
 
 class GameObject
 {
-private:
-	SDL_Renderer * renderer = nullptr;
+protected:
+	
+	int cellSize; // Tamaño de las celdas de juego
+	SDL_Rect rectDest; // rect de destino al ser pintado (width y heigth se inician a cellSize para que sean cuadradas)
+
+	Textures* texture; // Puntero a la textura que tiene que pintar
+
 
 public:
 	GameObject();
@@ -16,7 +22,7 @@ public:
 
 	void GameObject::render();
 	void GameObject::update();
-	void GameObject::loadFromFile(const char* fileName);
+	void GameObject::loadFromFile();
 	void GameObject::saveToFile();
 
 };
