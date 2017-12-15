@@ -10,7 +10,7 @@ class GameObject
 {
 protected:
 	
-	int cellSize; // Tamaño de las celdas de juego
+	int cellSize; // Tamaño de las celdas de juego (en verdad estando el rectDest no hace falta pero bue)
 	SDL_Rect rectDest; // rect de destino al ser pintado (width y heigth se inician a cellSize para que sean cuadradas)
 
 	Textures* texture; // Puntero a la textura que tiene que pintar

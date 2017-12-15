@@ -8,10 +8,25 @@ GameMap::~GameMap()
 {
 }
 
+void GameMap::loadMap(ifstream& level, int cellSize, Textures* texture) {
+	
+	loadFromFile(level); // Lee los datos del archivo y los pasa a MapCell
+
+	// Inicializa el tamaño de las celdas
+	GameObject::cellSize = cellSize;
+	GameObject::rectDest.w = cellSize;
+	GameObject::rectDest.h = cellSize;
+
+	// Asigna el puntero a la textura de los muros
+	GameObject::texture = texture;
+}
+
 // Rellena una celda con el tipo type
 void GameMap::fillCell(int row, int col, int type) {
 
-	map[row][col] = static_cast<MapCell>(type); // El casting para convertir de int a MapCell
+	// El casting para convertir de int a MapCell 
+	// (0 = empty, 1 = wall, 2 = food, 3 = vitamin)
+	map[row][col] = static_cast<MapCell>(type); 
 }
 
 // Lee lo necesario del archivo level para cargar el mapa
@@ -23,6 +38,13 @@ void GameMap::loadFromFile(ifstream& level)
 	level >> numRowMap;
 	level >> numColMap;
 
+	// Inicializa el mapa a MapCell
+	map = new MapCell*[numRowMap];
+
+	for (int i = 0; i < numRowMap; i++)
+		map[i] = new MapCell[numColMap];
+
+	// Asigna el tipo que le corresponde a cada celda 
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
 			level >> type;
@@ -32,7 +54,7 @@ void GameMap::loadFromFile(ifstream& level)
 
 }
 
-// Escribe los datos del mapa en el archivo level
+// Escribe los datos del mapa en el archivo level (solo los datos del mapa)
 void GameMap::saveToFile(ofstream& level)
 {
 	GameObject::saveToFile();
@@ -48,15 +70,17 @@ void GameMap::saveToFile(ofstream& level)
 }
 
 
-// Pinta el mapa en pantalla
+// Pinta el mapa en pantalla (renderCopy de las celdas)
 void GameMap::render() {
+
+	int aux;
 
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
 			GameObject::rectDest.y = cellSize * i;
 			GameObject::rectDest.x = cellSize * j;
-
-			texture->renderFrame(GameObject::rectDest, static_cast<int>(map[i][j]), 0);
+			aux = static_cast<int>(map[i][j]); // Estan colocadas en el png para que sea el mismo orden (0=empty, etc)
+			texture->renderFrame(GameObject::rectDest, aux, 0);
 		}
 	}
 }
