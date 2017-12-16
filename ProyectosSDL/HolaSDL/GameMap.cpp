@@ -9,16 +9,9 @@ GameMap::~GameMap()
 }
 
 void GameMap::loadMap(ifstream& level, int cellSize, Textures* texture) {
-	
+	loadGameObject(cellSize, texture);
+
 	loadFromFile(level); // Lee los datos del archivo y los pasa a MapCell
-
-	// Inicializa el tamaño de las celdas
-	GameObject::cellSize = cellSize;
-	GameObject::rectDest.w = cellSize;
-	GameObject::rectDest.h = cellSize;
-
-	// Asigna el puntero a la textura de los muros
-	GameObject::texture = texture;
 }
 
 // Rellena una celda con el tipo type
@@ -63,12 +56,11 @@ void GameMap::saveToFile(ofstream& level)
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
 
-			level << getCellType(i, j) << " ";
+			level << getCellType(i, j) << " "; 
 		}
 		level << endl;
 	}
 }
-
 
 // Pinta el mapa en pantalla (renderCopy de las celdas)
 void GameMap::render() {

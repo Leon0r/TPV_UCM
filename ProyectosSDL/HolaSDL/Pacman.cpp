@@ -15,10 +15,12 @@ void Pacman::render() {
 	GameCharacter::render();
 }
 
-void Pacman::loadFromFile() {
-	GameCharacter::loadFromFile();
+void Pacman::loadFromFile(ifstream& level, bool nuevo) {
+	GameCharacter::loadFromFile(level);
+
 }
 
-void Pacman::saveToFile() {
-	GameCharacter::saveToFile();
+void Pacman::saveToFile(ofstream& level) {
+	GameCharacter::saveToFile(level);
+	level << energy << " " << lifes;
 }

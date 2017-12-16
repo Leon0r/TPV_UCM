@@ -20,6 +20,7 @@ public:
 	GameObject();
 	~GameObject();
 
+	void GameObject::loadGameObject(int cellSize, Textures* texture); // Asigna el tamaño de celda y el puntero a textura
 	void GameObject::render();
 	void GameObject::update();
 	void GameObject::loadFromFile();

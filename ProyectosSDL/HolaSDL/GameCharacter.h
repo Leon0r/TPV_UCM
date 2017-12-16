@@ -24,12 +24,12 @@ public:
 	GameCharacter();
 	~GameCharacter();
 
-	void GameCharacter::loadCharacter(int x, int y, int cellSize, Textures* texture);
+	void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures* texture);
 	void GameCharacter::update();
 
 	void GameCharacter::render();
-	void GameCharacter::loadFromFile();
-	void GameCharacter::saveToFile();
+	void GameCharacter::loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter
+	void GameCharacter::saveToFile(ofstream& level); // Escribe posAct, posIni, dir del GameCharacter
 
 };
 
