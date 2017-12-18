@@ -23,8 +23,13 @@ private:
 		dirNextX,
 		dirNextY;
 
-	int lifes;
-	int energy = ENERGY_VIT;
+	int lifes,
+		energy = ENERGY_VIT;
+
+	// Para las animaciones
+	int frameRow, frameCol;
+	bool switchAnim = false; // Cambio entre los dos frames de animación
+
 
 public:
 	Pacman();
@@ -32,6 +37,7 @@ public:
 
 	void Pacman::render();
 	void Pacman::update();
+	void Pacman::numFrameAnim();
 	void Pacman::lessLife();
 	void Pacman::nextDir(int newDirX, int newDirY);
 	void Pacman::loadFromFile(ifstream& level, bool nuevo);
