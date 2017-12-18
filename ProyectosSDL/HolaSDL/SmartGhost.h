@@ -6,6 +6,9 @@
 class SmartGhost :
 	public Ghost
 {
+private:
+	int edad;
+
 public:
 	SmartGhost();
 	~SmartGhost();
