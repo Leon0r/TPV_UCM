@@ -4,6 +4,8 @@
 
 Ghost::Ghost()
 {
+	// Inicializa el random para las direcciones
+	srand(time(nullptr)); // Sin el #include <time.h> no funciona
 }
 
 
