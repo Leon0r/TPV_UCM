@@ -11,12 +11,14 @@ GameCharacter::~GameCharacter()
 {
 }
 
-void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture)
+void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game)
 {
 	loadGameObject(cellSize, texture);
 	loadFromFile(level);
 	frame.x = esqTextX;
 	frame.y = 0;
+	GameCharacter::game = game;
+
 }
 
 void GameCharacter::update() {
