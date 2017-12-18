@@ -4,6 +4,7 @@
 #include <fstream> // Para los archivos de entrada/salida
 
 #include "GameCharacter.h"
+#include "GameMap.h"
 class Game; // Evita llamadas circulares
 const int ENERGY_VIT = 200;
 
@@ -35,6 +36,7 @@ public:
 	Pacman();
 	~Pacman();
 
+	// Dibuja el Pacman en su posición actual
 	void Pacman::render();
 	void Pacman::update();
 

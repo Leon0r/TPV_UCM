@@ -9,14 +9,34 @@ Pacman::~Pacman()
 {
 }
 
+// Dibuja el Pacman en su posición actual
 void Pacman::render() {
 	GameCharacter::render();
 	rectDest.x = rectDest.w*posActX;
 	rectDest.y = rectDest.h*posActY;
 	numFrameAnim();
+
+	texture->renderFrame(rectDest, frameRow, frameCol);
 }
 
+// Actualiza el estado de PacMan (dirección y posición actual)
 void Pacman::update() {	
+	// Memoria de dirección: solo cambia si es distinta a la que lleva y puede moverse hacia esa posición
+	if ((dirX != dirNextX || dirY != dirNextY) && game->nextCell(posActX, posActY, dirNextX, dirNextY)){
+		dirX = dirNextX;
+		dirY = dirNextY;
+	}
+	// Comprueba colisión entre fantasma-Pacman
+	///TODO: game->collisionWithGhost()
+
+	if (energy > 0)
+		energy -= 1;
+
+	if (lifes > 0 && game->nextCell(posActX, posActY, dirX, dirY))
+	{
+		///TODO: toroide
+		///TODO: comer energía sube la energía
+	}
 }
 
 // Pierde una vida y vuelve a su posición inicial
