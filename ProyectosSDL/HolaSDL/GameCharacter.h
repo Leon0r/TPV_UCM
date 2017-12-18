@@ -13,7 +13,7 @@ struct par {
 class GameCharacter :
 	public GameObject
 {
-private:
+protected:
 	par posIni; // Pos inicial del character para reiniciarla al morir
 	par posAct; // Pos actual del character
 	par dir; // Direccion actual del character
