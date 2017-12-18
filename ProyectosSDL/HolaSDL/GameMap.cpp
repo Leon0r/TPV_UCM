@@ -64,10 +64,10 @@ void GameMap::render() {
 
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
-			GameObject::rectDest.y = cellSize * i;
-			GameObject::rectDest.x = cellSize * j;
+			rectDest.y = cellSize * i;
+			rectDest.x = cellSize * j;
 			aux = static_cast<int>(map[i][j]); // Estan colocadas en el png para que sea el mismo orden (0=empty, etc)
-			texture->renderFrame(GameObject::rectDest, aux, 0);
+			texture->renderFrame(rectDest, aux, 0);
 		}
 	}
 }
