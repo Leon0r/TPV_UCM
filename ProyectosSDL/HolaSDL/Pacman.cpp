@@ -22,9 +22,9 @@ void Pacman::render() {
 // Actualiza el estado de PacMan (dirección y posición actual)
 void Pacman::update() {	
 	// Memoria de dirección: solo cambia si es distinta a la que lleva y puede moverse hacia esa posición
-	if ((dirX != dirNextX || dirY != dirNextY) && game->nextCell(posActX, posActY, dirNextX, dirNextY)){
-		dirX = dirNextX;
-		dirY = dirNextY;
+	if ((dir.x != dirNextX || dir.y != dirNextY) && game->nextCell(posAct.x, posAct.y, dirNextX, dirNextY)){
+		dir.x = dirNextX;
+		dir.y = dirNextY;
 	}
 	// Comprueba colisión entre fantasma-Pacman
 	///TODO: game->collisionWithGhost()
@@ -32,7 +32,7 @@ void Pacman::update() {
 	if (energy > 0)
 		energy -= 1;
 
-	if (lifes > 0 && game->nextCell(posActX, posActY, dirX, dirY))
+	if (lifes > 0 && game->nextCell(posAct.x, posAct.y, dir.x, dir.y))
 	{
 		///TODO: toroide
 		///TODO: comer energía sube la energía
@@ -43,21 +43,21 @@ void Pacman::update() {
 void Pacman::lessLife() {
 	if (lifes > 0) {
 		lifes--;
-		posActX = posIniX;
-		posActY = posIniY;
+		posAct.x = posIni.x;
+		posAct.y = posIni.y;
 	}
 }
 
 // Cambia el frame de la animación según su dirección
 void Pacman::numFrameAnim() {
 	// Mira la fila del frame:
-	if (dirX == 1) // Derecha
+	if (dir.x == 1) // Derecha
 		frameRow = 0;
-	else if (dirX == -1) // Izquierda
+	else if (dir.x == -1) // Izquierda
 		frameRow = 2;
-	else if (dirY == 1) // Abajo
+	else if (dir.y == 1) // Abajo
 		frameRow = 1;
-	else if (dirY == -1) // Arriba
+	else if (dir.y == -1) // Arriba
 		frameRow = 3;
 
 	// Mira la columna, la cambia para que haya movimiento
@@ -79,7 +79,7 @@ void Pacman::nextDir(int newDirX, int newDirY) {
 // Carga de archivo la información del Pacman
 void Pacman::loadFromFile(ifstream& level, bool nuevo) {
 	GameCharacter::loadFromFile(level);
-	level >> posActX >> posActY >> dirX >> dirY >> energy >> lifes;
+	level >> posAct.x >> posAct.y >> dir.x >> dir.y >> energy >> lifes;
 	if(!nuevo) // Si es un archivo de guardado lee también la energía y las vidas
 		level >> energy >> lifes;
 }

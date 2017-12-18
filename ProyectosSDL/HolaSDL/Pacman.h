@@ -14,14 +14,7 @@ class Pacman :
 private:
 	Game* game = nullptr;
 
-	int posIniX,
-		posIniY,
-		posActX,
-		posActY;
-
-	int dirX,
-		dirY,
-		dirNextX,
+	int dirNextX,
 		dirNextY;
 
 	int lifes,
