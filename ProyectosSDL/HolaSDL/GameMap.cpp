@@ -4,13 +4,9 @@ GameMap::GameMap()
 {
 }
 
-GameMap::~GameMap()
-{
-}
-
 void GameMap::loadMap(ifstream& level, int cellSize, Textures* texture) {
-	loadGameObject(cellSize, texture);
 
+	loadGameObject(cellSize, texture);
 	loadFromFile(level); // Lee los datos del archivo y los pasa a MapCell
 }
 
@@ -44,7 +40,6 @@ void GameMap::loadFromFile(ifstream& level)
 			fillCell(i, j, type);
 		}
 	}
-
 }
 
 // Escribe los datos del mapa en el archivo level (solo los datos del mapa)
@@ -80,4 +75,13 @@ void GameMap::render() {
 void GameMap::update() 
 {
 
+}
+
+// Destruye el mapa y reinicia valores
+GameMap::~GameMap()
+{
+	for (int i = 0; i < numRowMap; i++)
+		delete map[i];
+
+	delete map;
 }

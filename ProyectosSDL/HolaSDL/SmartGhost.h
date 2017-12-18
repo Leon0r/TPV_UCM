@@ -11,7 +11,7 @@ public:
 	~SmartGhost();
 
 	void SmartGhost::update();
-	void SmartGhost::loadFromFile();
-	void SmartGhost::saveToFile();
+	void SmartGhost::loadFromFile(ifstream& level);
+	void SmartGhost::saveToFile(ofstream& level);
 };
 

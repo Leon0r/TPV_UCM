@@ -13,11 +13,11 @@ SmartGhost::~SmartGhost()
 void SmartGhost::update() {
 
 }
-void SmartGhost::loadFromFile() {
-	Ghost::loadFromFile();
+void SmartGhost::loadFromFile(ifstream& level) {
+	GameCharacter::loadFromFile(level);
 
 }
-void SmartGhost::saveToFile() {
-	Ghost::saveToFile();
+void SmartGhost::saveToFile(ofstream& level) {
+	GameCharacter::saveToFile(level);
 
 }

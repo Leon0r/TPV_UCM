@@ -1,7 +1,5 @@
 #include "Textures.h"
 
-
-
 Textures::Textures()
 {
 }
