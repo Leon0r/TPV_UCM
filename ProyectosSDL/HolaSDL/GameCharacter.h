@@ -20,7 +20,7 @@ private:
 
 	par frame; // Coordenadas en la textura del frame (esquina sup izquierda) concreto a renderizar
 	// Como todos los personajes tienen las animaciones colocadas igual, 
-	// solo hace falta saber dónde empieza cada una
+	// solo hace falta saber dï¿½nde empieza cada una
 
 	Game* game;
 
@@ -29,7 +29,7 @@ public:
 	~GameCharacter();
 
 	void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures* texture, Game* game);
-	void GameCharacter::update();
+	virtual void GameCharacter::update();
 
 	void GameCharacter::render();
 	void GameCharacter::loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter

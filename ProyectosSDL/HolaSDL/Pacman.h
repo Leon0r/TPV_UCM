@@ -37,10 +37,16 @@ public:
 
 	void Pacman::render();
 	void Pacman::update();
-	void Pacman::numFrameAnim();
+
+	// Pierde una vida y vuelve a su posición inicial
 	void Pacman::lessLife();
+	// Cambia el frame de la animación según su dirección
+	void Pacman::numFrameAnim();
+	// Asigna a la siguiente posición los valores newDir
 	void Pacman::nextDir(int newDirX, int newDirY);
+	// Carga de archivo la información del Pacman
 	void Pacman::loadFromFile(ifstream& level, bool nuevo);
+	// Guarda en un archivo la información del Pacman
 	void Pacman::saveToFile(ofstream& level);
 };
 

@@ -28,6 +28,7 @@ void Pacman::lessLife() {
 	}
 }
 
+// Cambia el frame de la animación según su dirección
 void Pacman::numFrameAnim() {
 	// Mira la fila del frame:
 	if (dirX == 1) // Derecha
@@ -55,10 +56,15 @@ void Pacman::nextDir(int newDirX, int newDirY) {
 	dirNextY = newDirY;
 }
 
+// Carga de archivo la información del Pacman
 void Pacman::loadFromFile(ifstream& level, bool nuevo) {
 	GameCharacter::loadFromFile(level);
+	level >> posActX >> posActY >> dirX >> dirY >> energy >> lifes;
+	if(!nuevo) // Si es un archivo de guardado lee también la energía y las vidas
+		level >> energy >> lifes;
 }
 
+// Guarda en un archivo la información del Pacman
 void Pacman::saveToFile(ofstream& level) {
 	GameCharacter::saveToFile(level);
 	level << energy << " " << lifes;

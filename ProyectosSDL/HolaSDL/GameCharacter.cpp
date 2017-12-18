@@ -21,7 +21,7 @@ void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, T
 
 }
 
-void GameCharacter::update() {
+virtual void GameCharacter::update() {
 
 }
 
