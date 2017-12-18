@@ -12,8 +12,8 @@ Pacman::~Pacman()
 // Dibuja el Pacman en su posición actual
 void Pacman::render() {
 	GameCharacter::render();
-	rectDest.x = rectDest.w*posActX;
-	rectDest.y = rectDest.h*posActY;
+	rectDest.x = rectDest.w*posAct.x;
+	rectDest.y = rectDest.h*posAct.y;
 	numFrameAnim();
 
 	texture->renderFrame(rectDest, frameRow, frameCol);
