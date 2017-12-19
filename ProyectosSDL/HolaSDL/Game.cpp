@@ -1,7 +1,5 @@
 #include "Game.h"
 
-
-
 Game::Game()
 {
 }
@@ -31,6 +29,16 @@ void Game::nextPosToroide(int& posX, int& posY, const int dirX, const int dirY) 
 	else if (dirY == 1)
 		Down(posY);
 
+}
+
+// Consulta si la casilla es comestible: comida o energía, en el segundo caso devuelve true
+bool Game::cellEatable(const int x, const int y) {
+	bool vit = map->getCellType(y, x) == 3; // Vitamina hace que devuelva true la función
+	if (map->getCellType(y, x) == 3 || map->getCellType(y, x) == 2) { // 3: vitamina, 2: comida
+		foodLeft--; // Resta a la comida total
+		map->fillCell(y, x, 0); // Cambia la casilla a vacío
+	}
+	return vit;
 }
 
 // Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
