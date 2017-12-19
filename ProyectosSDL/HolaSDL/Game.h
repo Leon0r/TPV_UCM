@@ -7,6 +7,7 @@
 #include "Textures.h"
 
 const int NUM_TEXTURES = 2;
+const int FRAME_RATE = 100; 	// A menor tiempo de espera entre frames, mayor la velocidad del bucle
 
 class Game
 {
@@ -45,7 +46,6 @@ private:
 
 	int foodLeft;
 
-	int waitTimeFrame = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
 	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
 	// Eventos

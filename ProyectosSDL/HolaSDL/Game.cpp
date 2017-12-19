@@ -7,6 +7,12 @@ Game::Game()
 
 Game::~Game()
 {
+	for (int i = 0; i < NUM_TEXTURES; i++)
+		delete textures[i];
+
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 // Inicializa todos los atributos
@@ -67,14 +73,11 @@ void Game::run() {
 	loadGame();
 	while (!exit) {
 		startTime = SDL_GetTicks();
-		render();
 		handleEvents();
-
+		// update();
+		render();
 		frameTime = SDL_GetTicks() - startTime;
-		/// TODO: Creo que esto se puede hacer sin el if, con un max entre el waitTime y el waitTime - frameTime
-		/// o algo así dijo Jaime en FP no hace mucho, fjahsekjflhslfdñas jflsdjfñlasmdv
-		if (frameTime < waitTimeFrame)
-			SDL_Delay(waitTimeFrame - frameTime);	
+		if (frameTime<FRAME_RATE) SDL_Delay(FRAME_RATE - frameTime);
 	}
 }
 
