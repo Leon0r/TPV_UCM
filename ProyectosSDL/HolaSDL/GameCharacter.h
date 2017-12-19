@@ -21,7 +21,7 @@ protected:
 
 	par frame; // Coordenadas en la textura del frame (esquina sup izquierda) concreto a renderizar
 	// Como todos los personajes tienen las animaciones colocadas igual, 
-	// solo hace falta saber d�nde empieza cada una
+	// solo hace falta saber donde empieza cada una
 
 	Game* game;
 

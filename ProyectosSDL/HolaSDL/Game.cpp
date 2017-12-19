@@ -60,7 +60,6 @@ void Game::loadGame() {
 		level.close();
 		SDL_RenderPresent(renderer);
 	}
-
 }
 
 // Bucle principal del juego
@@ -75,15 +74,15 @@ void Game::run() {
 		/// TODO: Creo que esto se puede hacer sin el if, con un max entre el waitTime y el waitTime - frameTime
 		/// o algo así dijo Jaime en FP no hace mucho, fjahsekjflhslfdñas jflsdjfñlasmdv
 		if (frameTime < waitTimeFrame)
-			SDL_Delay(waitTimeFrame - frameTime);
-		
+			SDL_Delay(waitTimeFrame - frameTime);	
 	}
 }
 
 // Dibuja el estado actual del juego
 void Game::render() {
 	map->render();
-	/// TODO: GameCharacter->render(); ???
+	for (auto c : characters)
+		c->render();
 	SDL_RenderPresent(renderer);
 }
 

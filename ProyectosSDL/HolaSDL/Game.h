@@ -76,6 +76,5 @@ public:
 	bool Game::cellEatable(const int x, const int y);
 	// Mira si en hay fantasma en la pos (x,y)
 	void Game::collisionWithGhost(int x, int y);
-
 };
 

@@ -5,7 +5,6 @@ GameCharacter::GameCharacter():GameObject() {
 
 }
 
-
 GameCharacter::~GameCharacter()
 {
 }
@@ -17,7 +16,6 @@ void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, T
 	frame.x = esqTextX;
 	frame.y = 0;
 	GameCharacter::game = game;
-
 }
 
 void GameCharacter::update() {

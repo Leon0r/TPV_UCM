@@ -6,8 +6,6 @@
 #include <fstream> 
 using namespace std;
 
-
-
 class GameObject
 {
 protected:
@@ -17,7 +15,6 @@ protected:
 
 	Textures* texture; // Puntero a la textura que tiene que pintar
 	
-
 public:
 	GameObject();
 	~GameObject();
@@ -27,6 +24,5 @@ public:
 	void GameObject::update();
 	void GameObject::loadFromFile();
 	void GameObject::saveToFile();
-
 };
 

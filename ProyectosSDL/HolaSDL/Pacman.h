@@ -5,7 +5,6 @@
 #include "GameCharacter.h"
 //#include "GameMap.h"
 
-
 const int ENERGY_VIT = 200;
 
 class Pacman :
@@ -24,15 +23,14 @@ private:
 	int frameRow, frameCol;
 	bool switchAnim = false; // Cambio entre los dos frames de animación
 
-
 public:
 	Pacman();
 	~Pacman();
 
 	// Dibuja el Pacman en su posición actual
 	void Pacman::render();
+	// Actualiza el estado de PacMan (dirección y posición actual)
 	void Pacman::update();
-
 	// Pierde una vida y vuelve a su posición inicial
 	void Pacman::lessLife();
 	// Cambia el frame de la animación según su dirección

@@ -20,6 +20,5 @@ public:
 	~Ghost();
 
 	void Ghost::update();
-
 };
 
