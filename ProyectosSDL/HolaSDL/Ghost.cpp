@@ -14,6 +14,7 @@ Ghost::~Ghost()
 }
 
 void Ghost::update() {
+	chooseDir();
 	GameCharacter::update();
 }
 
