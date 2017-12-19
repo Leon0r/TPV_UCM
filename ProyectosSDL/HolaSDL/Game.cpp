@@ -18,6 +18,26 @@ void Game::loadGame() {
 	window = SDL_CreateWindow("PACMAN", winX, winY, winWidth, winHeigth, SDL_WINDOW_SHOWN);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
+	// Para ver si window se inicializa bien
+	if (window == nullptr || renderer == nullptr)
+		cout << "ERROR 404: window or renderer not found.";
+	else {
+		// Inicialización de texturas
+		for (int i = 0; i < NUM_TEXTURES; i++) {
+			textures[i] = new Textures;
+			textures[i]->loadTextureFromImage(renderer, infoT[i].filename, infoT[i].numFils, infoT[i].numCols);
+		}
+
+		/// TODO: NO SE SI ESTO VA DENTRO DEL FOR TAMBIÉN, NO LO ENTIENDO
+		// Inicializa el mapa con level01
+		ifstream level("..\\levels\\level01.pac");
+		map->loadMap(level, 20, textures[0]);
+		map->render();
+		level.close();
+		SDL_RenderPresent(renderer);
+		system("pause");
+	}
+
 }
 
 // Bucle principal del juego

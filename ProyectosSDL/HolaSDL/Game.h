@@ -1,19 +1,36 @@
 #pragma once
 #include "GameMap.h"
+#include "Textures.h"
 class Pacman; // Evita llamadas circulares
+
+const int NUM_TEXTURES = 2;
 
 class Game
 {
 private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
+	Textures* textures[NUM_TEXTURES]; // Array de las texturas del juego
 
+	// Struct con lo necesario para inicializar las texturas
+	struct infoText {
+		const char* filename;
+		int numFils;
+		int numCols;
+	};
+
+	// Array con la información de las texturas
+	infoText infoT[NUM_TEXTURES]{
+		{ "..\\sprites\\pacmanCellsFull.png", 4, 1 },
+		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
+	};
+
+	// Tamaño y posición de la ventana
 	const int winWidth = 600;
 	const int winHeigth = 600;
 	int winX,
 		winY;
-
-
+	
 	GameMap* map;
 	Pacman* pacman;
 
