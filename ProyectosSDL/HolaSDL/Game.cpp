@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Pacman.h"
 
 Game::Game()
 {
@@ -7,6 +8,31 @@ Game::Game()
 
 Game::~Game()
 {
+}
+
+// Bucle principal del juego
+void Game::run() {
+	
+	while (!exit) {
+		
+	}
+}
+
+// Se encarga de los eventos de teclado
+void Game::handleEvents() {
+	if (SDL_PollEvent(&event)) {
+		if (event.type == SDL_QUIT)
+			exit = true;
+		// Eventos de felchas de dirección
+		else if (event.key.keysym.sym == SDLK_UP)
+			pacman->nextDir(0, -1);
+		else if (event.key.keysym.sym == SDLK_DOWN)
+			pacman->nextDir(0, 1);
+		else if (event.key.keysym.sym == SDLK_LEFT)
+			pacman->nextDir(-1, 0);
+		else if (event.key.keysym.sym == SDLK_RIGHT)
+			pacman->nextDir(-1, 0);			
+	}
 }
 
 // Devuelve true si la sig casilla en direccion dir es vacia
@@ -39,6 +65,16 @@ bool Game::cellEatable(const int x, const int y) {
 		map->fillCell(y, x, 0); // Cambia la casilla a vacío
 	}
 	return vit;
+}
+
+// Mira si en hay fantasma en la pos (x,y)
+void Game::collisionWithGhost(int x, int y) {
+	bool crush = false;
+	/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
+	/// TODO: crush se pone a true si la posicion de algún fantasma coincide con x && y
+
+	/// ESTO HABRÍA QUE SACARLO A GHOST Y PACMAN??
+	/// TODO: si crush es true y pacman tiene vitamina, ghost muere, si no pacman pierde vida
 }
 
 // Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide

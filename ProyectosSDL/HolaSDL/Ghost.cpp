@@ -1,7 +1,5 @@
 #include "Ghost.h"
 
-
-
 Ghost::Ghost()
 {
 	// Inicializa el random para las direcciones

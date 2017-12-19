@@ -1,5 +1,5 @@
 #include "Pacman.h"
-#include "game.h"
+#include "Game.h"
 
 Pacman::Pacman()
 {
