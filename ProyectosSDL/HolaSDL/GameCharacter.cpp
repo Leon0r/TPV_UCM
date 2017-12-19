@@ -26,6 +26,10 @@ void GameCharacter::update() {
 
 void GameCharacter::render() {
 	GameObject::render();
+	rectDest.x = rectDest.w*posAct.x;
+	rectDest.y = rectDest.h*posAct.y;
+
+	texture->renderFrame(rectDest, frame.y, frame.x);
 
 }
 

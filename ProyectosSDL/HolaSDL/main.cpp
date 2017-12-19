@@ -6,10 +6,11 @@
 using namespace std;
 
 #include"GameMap.h"
-const int NUM_TEXTURES = 2;
+#include "Game.h"
+//const int NUM_TEXTURES = 2;
 
 int main(int argc, char* argv[]){
-	SDL_Window* window = nullptr;
+	/*SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
 	// TAMAÑO Y POSICION VENTANA
@@ -38,7 +39,13 @@ int main(int argc, char* argv[]){
 	map.loadMap(level, 20, textures[0]);
 	map.render();
 	level.close();
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(renderer);*/
+	
+	Game* game;
+	game = new Game();
+
+	game->loadGame();
+
 	system("pause");
 	return 0;
 }

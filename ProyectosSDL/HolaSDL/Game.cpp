@@ -31,20 +31,34 @@ void Game::loadGame() {
 		/// TODO: NO SE SI ESTO VA DENTRO DEL FOR TAMBIÉN, NO LO ENTIENDO
 		// Inicializa el mapa con level01
 		ifstream level("..\\levels\\level01.pac");
+		map = new GameMap();
 		map->loadMap(level, 20, textures[0]);
 		// Lee el nº de fantasmas
-		int numGhost;
+		int numGhost, typeGhost;
 		level >> numGhost;
-		characters.resize(numGhost + 1);
+		
 		// Bucle para crear fantasmas
-		for (it = characters.begin(); it != characters.end(); it++)
+		for (int i = 0; i < numGhost; i++)
 		{
-
+			// Lee el tipo de fantasma que es
+			level >> typeGhost; // Si es 0, normal, si 1, evolucionado
+			if (typeGhost == 1) {
+				// Aqui se crearian los SmartGhost
+			}
+			else {
+				characters.push_back(new Ghost());// Crea un nuevo fantasma
+				  // como se ha hecho push back, el último obj de la lista es el fantasma creado
+				characters.back()->loadCharacter(level, 0, 20, textures[1], this); 
+			}
 		}
+
+		for (it = characters.begin(); it != characters.end(); it++) {
+			(*it)->render();
+		}
+
 		map->render();
 		level.close();
 		SDL_RenderPresent(renderer);
-		system("pause");
 	}
 
 }
