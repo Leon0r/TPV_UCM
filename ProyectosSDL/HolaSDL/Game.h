@@ -8,9 +8,18 @@ const int NUM_TEXTURES = 2;
 class Game
 {
 private:
+	GameMap* map;
+	Pacman* pacman;
+
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	Textures* textures[NUM_TEXTURES]; // Array de las texturas del juego
+	
+	// Tamaño y posición de la ventana
+	const int winWidth = 600;
+	const int winHeigth = 600;
+	int winX,
+		winY;
 
 	// Struct con lo necesario para inicializar las texturas
 	struct infoText {
@@ -25,16 +34,11 @@ private:
 		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
 	};
 
-	// Tamaño y posición de la ventana
-	const int winWidth = 600;
-	const int winHeigth = 600;
-	int winX,
-		winY;
-	
-	GameMap* map;
-	Pacman* pacman;
 
 	int foodLeft;
+
+	int waitTimeFrame = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
+	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
 	// Eventos
 	SDL_Event* event = nullptr;
@@ -48,15 +52,22 @@ private:
 public:
 	Game();
 	~Game();
+	// Inicializa todos los atributos
 	void Game::loadGame();
+	// Dibuja el estado actual del juego
+	void Game::render();
 	// Bucle principal del juego
 	void Game::run();
 	// Se encarga de los eventos de teclado
 	void Game::handleEvents();
+	// Devuelve true si la sig casilla en direccion dir es vacia
 	bool Game::nextCell(int posX, int posY, const int dirX, const int dirY);
-	// Consulta si la casilla es comestible: comida o energ�a, en el segundo caso devuelve true
-	bool Game::cellEatable(const int x, const int y);
-	void Game::collisionWithGhost(int x, int y);
+	// Calcula la sig pos (con toroide)
 	void Game::nextPosToroide(int& posX, int& posY, const int dirX, const int dirY);
+	// Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
+	bool Game::cellEatable(const int x, const int y);
+	// Mira si en hay fantasma en la pos (x,y)
+	void Game::collisionWithGhost(int x, int y);
+
 };
 

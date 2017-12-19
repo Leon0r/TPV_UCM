@@ -10,6 +10,7 @@ Game::~Game()
 {
 }
 
+// Inicializa todos los atributos
 void Game::loadGame() {
 	winX = winY = SDL_WINDOWPOS_CENTERED;
 
@@ -42,10 +43,26 @@ void Game::loadGame() {
 
 // Bucle principal del juego
 void Game::run() {
-	
+	loadGame();
 	while (!exit) {
+		startTime = SDL_GetTicks();
+		render();
+		handleEvents();
+
+		frameTime = SDL_GetTicks() - startTime;
+		/// TODO: Creo que esto se puede hacer sin el if, con un max entre el waitTime y el waitTime - frameTime
+		/// o algo así dijo Jaime en FP no hace mucho, fjahsekjflhslfdñas jflsdjfñlasmdv
+		if (frameTime < waitTimeFrame)
+			SDL_Delay(waitTimeFrame - frameTime);
 		
 	}
+}
+
+// Dibuja el estado actual del juego
+void Game::render() {
+	map->render();
+	/// TODO: GameCharacter->render(); ???
+	SDL_RenderPresent(renderer);
 }
 
 // Se encarga de los eventos de teclado
@@ -87,7 +104,7 @@ void Game::nextPosToroide(int& posX, int& posY, const int dirX, const int dirY) 
 
 }
 
-// Consulta si la casilla es comestible: comida o energía, en el segundo caso devuelve true
+// Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
 bool Game::cellEatable(const int x, const int y) {
 	bool vit = map->getCellType(y, x) == 3; // Vitamina hace que devuelva true la función
 	if (map->getCellType(y, x) == 3 || map->getCellType(y, x) == 2) { // 3: vitamina, 2: comida
