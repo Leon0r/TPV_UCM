@@ -6,6 +6,7 @@
 //#include "GameMap.h"
 
 const int ENERGY_VIT = 200;
+class Game;
 
 class Pacman :
 	public GameCharacter
@@ -13,35 +14,32 @@ class Pacman :
 private:
 	
 	par dirNext;
-	int dirNextX,
-		dirNextY;
 
 	int lifes,
 		energy = ENERGY_VIT;
 
-	// Para las animaciones
-	int frameRow, frameCol;
 	bool switchAnim = false; // Cambio entre los dos frames de animación
+
 
 public:
 	Pacman();
-	~Pacman();
+	Pacman(Game* game);
 
-	// Dibuja el Pacman en su posición actual
-	void Pacman::render();
+	virtual ~Pacman();
+
 	// Actualiza el estado de PacMan (dirección y posición actual)
-	void Pacman::update();
+	virtual void update();
 	// Pierde una vida y vuelve a su posición inicial
-	void Pacman::lessLife();
+	void lessLife();
 	// Cambia el frame de la animación según su dirección
-	void Pacman::numFrameAnim();
+	void numFrameAnim();
 	// Asigna a la siguiente posición los valores newDir
-	void Pacman::nextDir(int newDirX, int newDirY);
+	void nextDir(int newDirX, int newDirY);
 	// Carga de archivo la información del Pacman
-	void Pacman::loadFromFile(ifstream& level, bool nuevo);
+	virtual void loadFromFile(ifstream& level);
 	// Guarda en un archivo la información del Pacman
-	void Pacman::saveToFile(ofstream& level);
+	virtual void saveToFile(ofstream& level);
 	// Carga el pacman como tal
-	void Pacman::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game);
+	void loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game);
 };
 

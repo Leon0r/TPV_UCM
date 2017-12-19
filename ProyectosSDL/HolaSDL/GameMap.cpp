@@ -1,7 +1,9 @@
 #include "GameMap.h"
 
-GameMap::GameMap()
-{
+GameMap::GameMap():GameObject(){
+}
+
+GameMap::GameMap(Game* game):GameObject(game) {
 }
 
 void GameMap::loadMap(ifstream& level, int cellSize, Textures* texture) {
@@ -21,7 +23,6 @@ void GameMap::fillCell(int row, int col, int type) {
 // Lee lo necesario del archivo level para cargar el mapa
 void GameMap::loadFromFile(ifstream& level)
 {
-	GameObject::loadFromFile();
 	int type;
 
 	level >> numRowMap;
@@ -45,7 +46,6 @@ void GameMap::loadFromFile(ifstream& level)
 // Escribe los datos del mapa en el archivo level (solo los datos del mapa)
 void GameMap::saveToFile(ofstream& level)
 {
-	GameObject::saveToFile();
 	level << numRowMap;
 	level << numColMap;
 	for (int i = 0; i < numRowMap; i++) {

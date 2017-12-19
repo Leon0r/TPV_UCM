@@ -7,7 +7,7 @@
 #include "Textures.h"
 
 const int NUM_TEXTURES = 2;
-const int FRAME_RATE = 100; 	// A menor tiempo de espera entre frames, mayor la velocidad del bucle
+const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
 
 class Game
 {
@@ -15,7 +15,7 @@ private:
 	GameMap* map = nullptr;
 	Pacman* pacman = nullptr;
 	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters 
-	list <GameCharacter*>::iterator it; // Crear el iterador de la lista (puntero a los punteros de la lista)
+	//list <GameCharacter*>::iterator it; // Crear el iterador de la lista (puntero a los punteros de la lista)
 
 
 	SDL_Window* window = nullptr;
@@ -75,6 +75,6 @@ public:
 	// Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
 	bool Game::cellEatable(const int x, const int y);
 	// Mira si en hay fantasma en la pos (x,y)
-	void Game::collisionWithGhost(int x, int y);
+	void Game::collisionWithCharacter(int x, int y, bool crush);
 };
 

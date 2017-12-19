@@ -6,6 +6,7 @@ Ghost::Ghost():GameCharacter()
 	srand(time(nullptr)); // Sin el #include <time.h> no funciona
 }
 
+Ghost::Ghost(Game* game):GameCharacter(game){}
 
 Ghost::~Ghost()
 {

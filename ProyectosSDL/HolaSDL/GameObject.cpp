@@ -4,6 +4,9 @@ GameObject::GameObject()
 {
 }
 
+GameObject::GameObject(Game* game) : game(game)
+{
+};
 
 GameObject::~GameObject()
 {
@@ -17,20 +20,4 @@ void GameObject::loadGameObject(int cellSize, Textures* texture) {
 	rectDest.w = cellSize;
 	// Asigna el puntero a la textura del GO
 	GameObject::texture = texture;
-}
-
-void GameObject::render() {
-
-}
-
-void GameObject::update() {
-
-}
-
-void GameObject::loadFromFile() {
-	
-}
-
-void GameObject::saveToFile() {
-
 }

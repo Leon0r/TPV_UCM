@@ -23,19 +23,18 @@ protected:
 	// Como todos los personajes tienen las animaciones colocadas igual, 
 	// solo hace falta saber donde empieza cada una
 
-	Game* game;
+	GameCharacter();
+	GameCharacter(Game* game);
 
 public:
-	GameCharacter();
-	~GameCharacter();
+	virtual ~GameCharacter();
+	void loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures* texture, Game* game);
+	virtual void update();
 
-	void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures* texture, Game* game);
-	void GameCharacter::update();
-
-	void GameCharacter::render();
-	void GameCharacter::loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter
-	void GameCharacter::saveToFile(ofstream& level); // Escribe posAct, posIni, dir del GameCharacter
-	bool GameCharacter::sigPosToroideEsLibre(par dirAct); // Solo mira que en dir se pueda mover (para el random de fantasmas)
-	bool GameCharacter::sigPosToroideEsLibre(par dirAct, par& nextPos); // Devuelve la sig posicion en la direccion dir
+	virtual void render();
+	virtual void loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter
+	virtual void saveToFile(ofstream& level); // Escribe posAct, posIni, dir del GameCharacter
+	bool sigPosToroideEsLibre(par dirAct); // Solo mira que en dir se pueda mover (para el random de fantasmas)
+	bool sigPosToroideEsLibre(par dirAct, par& nextPos); // Devuelve la sig posicion en la direccion dir
 };
 

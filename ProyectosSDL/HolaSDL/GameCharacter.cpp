@@ -5,6 +5,10 @@ GameCharacter::GameCharacter():GameObject() {
 
 }
 
+GameCharacter::GameCharacter(Game* game):GameObject(game) {
+
+}
+
 GameCharacter::~GameCharacter()
 {
 }
@@ -23,12 +27,10 @@ void GameCharacter::update() {
 }
 
 void GameCharacter::render() {
-	GameObject::render();
 	rectDest.x = rectDest.w*posAct.x;
 	rectDest.y = rectDest.h*posAct.y;
 
 	texture->renderFrame(rectDest, frame.y, frame.x);
-
 }
 
 // Lee lo necesario del archivo para cargar el GameCharacter

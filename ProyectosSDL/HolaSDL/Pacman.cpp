@@ -1,22 +1,11 @@
 #include "Pacman.h"
+#include "Game.h"
 
-
-Pacman::Pacman():GameCharacter()
-{
-}
+Pacman::Pacman() :GameCharacter(), lifes(0), energy(0), dirNext{0,0} {}
+Pacman::Pacman(Game* game):GameCharacter(game) {}
 
 Pacman::~Pacman()
 {
-}
-
-// Dibuja el Pacman en su posición actual
-void Pacman::render() {
-	GameCharacter::render();
-	rectDest.x = rectDest.w*posAct.x;
-	rectDest.y = rectDest.h*posAct.y;
-	numFrameAnim();
-
-	texture->renderFrame(rectDest, frameRow, frameCol);
 }
 
 // Actualiza el estado de PacMan (dirección y posición actual)
@@ -36,8 +25,8 @@ void Pacman::update() {
 	//if (lifes > 0 && game->nextCell(posAct.x, posAct.y, dir.x, dir.y))
 	//{
 		// Recarga energía al comerse una vitamina COMENTADO POR COMPILADO
-	//if (game->cellEatable(posAct.x, posAct.y))
-		//	energy = ENERGY_VIT;
+	if (game->cellEatable(posAct.x, posAct.y))
+		energy = ENERGY_VIT;
 	//}
 }
 
@@ -54,19 +43,19 @@ void Pacman::lessLife() {
 void Pacman::numFrameAnim() {
 	// Mira la fila del frame:
 	if (dir.x == 1) // Derecha
-		frameRow = 0;
+		frame.y = 0;
 	else if (dir.x == -1) // Izquierda
-		frameRow = 2;
+		frame.y = 2;
 	else if (dir.y == 1) // Abajo
-		frameRow = 1;
+		frame.y = 1;
 	else if (dir.y == -1) // Arriba
-		frameRow = 3;
+		frame.y = 3;
 
 	// Mira la columna, la cambia para que haya movimiento
 	if (switchAnim)
-		frameCol = 10;
+		frame.x = 10;
 	else
-		frameCol = 11;
+		frame.x = 11;
 
 	// Abrir/cerrar la boca
 	switchAnim = !switchAnim; // En la siguiente vuelta se invierte
@@ -79,16 +68,15 @@ void Pacman::nextDir(int newDirX, int newDirY) {
 }
 
 // Carga de archivo la información del Pacman
-void Pacman::loadFromFile(ifstream& level, bool nuevo) {
-	GameCharacter::loadFromFile(level);
+void Pacman::loadFromFile(ifstream& level) {
 	level >> posAct.x >> posAct.y >> dir.x >> dir.y >> energy >> lifes;
-	if(!nuevo) // Si es un archivo de guardado lee también la energía y las vidas
+	/*if(!nuevo) // Si es un archivo de guardado lee también la energía y las vidas
 		level >> energy >> lifes;
+		*/
 }
 
 // Guarda en un archivo la información del Pacman
 void Pacman::saveToFile(ofstream& level) {
-	GameCharacter::saveToFile(level);
 	level << energy << " " << lifes;
 }
 

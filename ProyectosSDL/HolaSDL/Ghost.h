@@ -17,8 +17,10 @@ private:
 
 public:
 	Ghost();
-	~Ghost();
+	Ghost(Game* game);
 
-	void Ghost::update();
+	virtual ~Ghost();
+
+	virtual void update();
 };
 

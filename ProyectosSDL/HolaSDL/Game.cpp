@@ -1,9 +1,8 @@
 #include "Game.h"
 
-Game::Game()
-{
-}
+Game::Game() {
 
+}
 
 Game::~Game()
 {
@@ -34,10 +33,9 @@ void Game::loadGame() {
 			textures[i]->loadTextureFromImage(renderer, infoT[i].filename, infoT[i].numFils, infoT[i].numCols);
 		}
 
-		/// TODO: NO SE SI ESTO VA DENTRO DEL FOR TAMBIÉN, NO LO ENTIENDO
 		// Inicializa el mapa con level01
 		ifstream level("..\\levels\\level01.pac");
-		map = new GameMap();
+		map = new GameMap(this);
 		map->loadMap(level, 20, textures[0]);
 		// Lee el nº de fantasmas
 		int numGhost, typeGhost;
@@ -52,7 +50,7 @@ void Game::loadGame() {
 				// Aqui se crearian los SmartGhost
 			}
 			else {
-				characters.push_back(new Ghost());// Crea un nuevo fantasma
+				characters.push_back(new Ghost(this));// Crea un nuevo fantasma
 				  // como se ha hecho push back, el último obj de la lista es el fantasma creado
 				characters.back()->loadCharacter(level, 0, 20, textures[1], this); 
 			}
@@ -60,9 +58,11 @@ void Game::loadGame() {
 
 		// Primero pintar fondo (mapa) y luego lo demas
 		map->render();
-		for (it = characters.begin(); it != characters.end(); it++) {
+		for (auto c : characters)
+			c->render();
+		/*for (it = characters.begin(); it != characters.end(); it++) {
 			(*it)->render();
-		}
+		}*/
 		level.close();
 		SDL_RenderPresent(renderer);
 	}
@@ -139,13 +139,16 @@ bool Game::cellEatable(const int x, const int y) {
 }
 
 // Mira si en hay fantasma en la pos (x,y)
-void Game::collisionWithGhost(int x, int y) {
-	bool crush = false;
-	/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
-	/// TODO: crush se pone a true si la posicion de algún fantasma coincide con x && y
+void Game::collisionWithCharacter(int x, int y, bool crush) {
+	crush = false;
 
-	/// ESTO HABRÍA QUE SACARLO A GHOST Y PACMAN??
-	/// TODO: si crush es true y pacman tiene vitamina, ghost muere, si no pacman pierde vida
+	for (auto c : characters)
+		c->render();
+		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
+		/// TODO: crush se pone a true si la posicion de algún fantasma coincide con x && y
+
+		/// ESTO HABRÍA QUE SACARLO A GHOST Y PACMAN??
+		/// TODO: si crush es true y pacman tiene vitamina, ghost muere, si no pacman pierde vida
 }
 
 // Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
