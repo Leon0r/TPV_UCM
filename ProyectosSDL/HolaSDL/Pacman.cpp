@@ -12,8 +12,8 @@ Pacman::~Pacman()
 // Dibuja el Pacman en su posición actual
 void Pacman::render() {
 	GameCharacter::render();
-	rectDest.x = rectDest.w*posActX;
-	rectDest.y = rectDest.h*posActY;
+	rectDest.x = rectDest.w*posAct.x;
+	rectDest.y = rectDest.h*posAct.y;
 	numFrameAnim();
 
 	texture->renderFrame(rectDest, frameRow, frameCol);
@@ -32,11 +32,13 @@ void Pacman::update() {
 	if (energy > 0)
 		energy -= 1;
 
-	if (lifes > 0 && game->nextCell(posAct.x, posAct.y, dir.x, dir.y))
-	{
-		///TODO: toroide
-		///TODO: comer energía sube la energía
-	}
+	/// NO SE SI ESTE IF ES NECESARIO POR EL NEXTCELL
+	//if (lifes > 0 && game->nextCell(posAct.x, posAct.y, dir.x, dir.y))
+	//{
+		// Recarga energía al comerse una vitamina
+		if (game->cellEatable(posAct.x, posAct.y))
+			energy = ENERGY_VIT;
+	//}
 }
 
 // Pierde una vida y vuelve a su posición inicial
