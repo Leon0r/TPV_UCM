@@ -48,3 +48,10 @@ void GameCharacter::saveToFile(ofstream& level) {
 		<< posIni.x << " " << posIni.y << " "
 		<< dir.x << " " << dir.y;
 }
+
+// Devuelve true si la sig posicion en direccion dir es libre y la devuelve en nextPos la sig posicion calculada
+bool GameCharacter::sigPosToroideEsLibre(par dirAct, par& nextPos) {
+	nextPos = posAct;
+	game->nextPosToroide(nextPos.x, nextPos.y, dirAct.x, dirAct.y);
+	return game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y);
+}

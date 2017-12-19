@@ -37,7 +37,8 @@ void Ghost::possibleDirs() {
 	numDirs = 4; // Empieza asumiendo que puede ir en cualquiera de las 4 direcciones
 	int i = 0;
 	while (i < numDirs) {
-		if (!game->nextCell(posAct.x, posAct.y, directions[i].x, directions[i].y)) // Si la direccion que prueba no es válida (hay muro)
+
+		if (!sigPosToroideEsLibre(directions[i])) // Si la direccion que prueba no es válida (hay muro)
 		{
 			/*
 			Tiene todas las direcciones en el vector
