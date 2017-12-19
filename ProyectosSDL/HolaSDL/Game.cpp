@@ -52,11 +52,11 @@ void Game::loadGame() {
 			}
 		}
 
+		// Primero pintar fondo (mapa) y luego lo demas
+		map->render();
 		for (it = characters.begin(); it != characters.end(); it++) {
 			(*it)->render();
 		}
-
-		map->render();
 		level.close();
 		SDL_RenderPresent(renderer);
 	}
