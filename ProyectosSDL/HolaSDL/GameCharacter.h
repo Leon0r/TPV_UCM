@@ -29,7 +29,7 @@ public:
 	~GameCharacter();
 
 	void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures* texture, Game* game);
-	virtual void GameCharacter::update();
+	void GameCharacter::update();
 
 	void GameCharacter::render();
 	void GameCharacter::loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter

@@ -10,6 +10,16 @@ Game::~Game()
 {
 }
 
+void Game::loadGame() {
+	winX = winY = SDL_WINDOWPOS_CENTERED;
+
+	SDL_Init(SDL_INIT_EVERYTHING);
+
+	window = SDL_CreateWindow("PACMAN", winX, winY, winWidth, winHeigth, SDL_WINDOW_SHOWN);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+}
+
 // Bucle principal del juego
 void Game::run() {
 	
@@ -20,17 +30,17 @@ void Game::run() {
 
 // Se encarga de los eventos de teclado
 void Game::handleEvents() {
-	if (SDL_PollEvent(&event)) {
-		if (event.type == SDL_QUIT)
+	if (SDL_PollEvent(event)) {
+		if (event->type == SDL_QUIT)
 			exit = true;
 		// Eventos de felchas de dirección
-		else if (event.key.keysym.sym == SDLK_UP)
+		else if (event->key.keysym.sym == SDLK_UP)
 			pacman->nextDir(0, -1);
-		else if (event.key.keysym.sym == SDLK_DOWN)
+		else if (event->key.keysym.sym == SDLK_DOWN)
 			pacman->nextDir(0, 1);
-		else if (event.key.keysym.sym == SDLK_LEFT)
+		else if (event->key.keysym.sym == SDLK_LEFT)
 			pacman->nextDir(-1, 0);
-		else if (event.key.keysym.sym == SDLK_RIGHT)
+		else if (event->key.keysym.sym == SDLK_RIGHT)
 			pacman->nextDir(-1, 0);			
 	}
 }

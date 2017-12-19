@@ -5,13 +5,22 @@ class Pacman; // Evita llamadas circulares
 class Game
 {
 private:
+	SDL_Window* window = nullptr;
+	SDL_Renderer* renderer = nullptr;
+
+	const int winWidth = 600;
+	const int winHeigth = 600;
+	int winX,
+		winY;
+
+
 	GameMap* map;
 	Pacman* pacman;
 
 	int foodLeft;
 
 	// Eventos
-	SDL_Event event;
+	SDL_Event* event = nullptr;
 	bool exit = false;
 
 	void Game::Right(int& posX);
@@ -22,6 +31,7 @@ private:
 public:
 	Game();
 	~Game();
+	void Game::loadGame();
 	// Bucle principal del juego
 	void Game::run();
 	// Se encarga de los eventos de teclado
