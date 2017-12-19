@@ -1,15 +1,21 @@
 #pragma once
+#include <list> // Para la lista de GameCharacters (si, existe en C++ a parecer)
 #include "GameMap.h"
+#include "GameCharacter.h"
+#include "Ghost.h"
+#include "Pacman.h"
 #include "Textures.h"
-class Pacman; // Evita llamadas circulares
 
 const int NUM_TEXTURES = 2;
 
 class Game
 {
 private:
-	GameMap* map;
-	Pacman* pacman;
+	GameMap* map = nullptr;
+	Pacman* pacman = nullptr;
+	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters 
+	list <GameCharacter*>::iterator it; // Crear el iterador de la lista (puntero a los punteros de la lista)
+
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -34,6 +40,8 @@ private:
 		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
 	};
 
+	int posCharactPac; // Guarda la posicion del pacman en el vector
+	int finCharact; // Guarda el último elemento de los characters
 
 	int foodLeft;
 

@@ -6,6 +6,8 @@
 #include <fstream> 
 using namespace std;
 
+
+
 class GameObject
 {
 protected:
@@ -14,7 +16,7 @@ protected:
 	SDL_Rect rectDest; // rect de destino al ser pintado (width y heigth se inician a cellSize para que sean cuadradas)
 
 	Textures* texture; // Puntero a la textura que tiene que pintar
-
+	
 
 public:
 	GameObject();

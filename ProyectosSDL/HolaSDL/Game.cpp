@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Pacman.h"
 
 Game::Game()
 {
@@ -33,6 +32,15 @@ void Game::loadGame() {
 		// Inicializa el mapa con level01
 		ifstream level("..\\levels\\level01.pac");
 		map->loadMap(level, 20, textures[0]);
+		// Lee el nº de fantasmas
+		int numGhost;
+		level >> numGhost;
+		characters.resize(numGhost + 1);
+		// Bucle para crear fantasmas
+		for (it = characters.begin(); it != characters.end(); it++)
+		{
+
+		}
 		map->render();
 		level.close();
 		SDL_RenderPresent(renderer);

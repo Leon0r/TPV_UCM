@@ -1,7 +1,7 @@
 #include "Pacman.h"
-#include "Game.h"
 
-Pacman::Pacman()
+
+Pacman::Pacman():GameCharacter()
 {
 }
 
@@ -22,9 +22,9 @@ void Pacman::render() {
 // Actualiza el estado de PacMan (dirección y posición actual)
 void Pacman::update() {	
 	// Memoria de dirección: solo cambia si es distinta a la que lleva y puede moverse hacia esa posición
-	if ((dir.x != dirNextX || dir.y != dirNextY) && game->nextCell(posAct.x, posAct.y, dirNextX, dirNextY)){
-		dir.x = dirNextX;
-		dir.y = dirNextY;
+	if ((dir.x != dirNext.x || dir.y != dirNext.y) && sigPosToroideEsLibre(dirNext)){
+		dir.x = dirNext.x;
+		dir.y = dirNext.y;
 	}
 	// Comprueba colisión entre fantasma-Pacman
 	///TODO: game->collisionWithGhost()
@@ -35,9 +35,9 @@ void Pacman::update() {
 	/// NO SE SI ESTE IF ES NECESARIO POR EL NEXTCELL
 	//if (lifes > 0 && game->nextCell(posAct.x, posAct.y, dir.x, dir.y))
 	//{
-		// Recarga energía al comerse una vitamina
-		if (game->cellEatable(posAct.x, posAct.y))
-			energy = ENERGY_VIT;
+		// Recarga energía al comerse una vitamina COMENTADO POR COMPILADO
+	//if (game->cellEatable(posAct.x, posAct.y))
+		//	energy = ENERGY_VIT;
 	//}
 }
 
@@ -74,8 +74,8 @@ void Pacman::numFrameAnim() {
 
 // Asigna a la siguiente posición los valores newDir
 void Pacman::nextDir(int newDirX, int newDirY) {
-	dirNextX = newDirX;
-	dirNextY = newDirY;
+	dirNext.x = newDirX;
+	dirNext.y = newDirY;
 }
 
 // Carga de archivo la información del Pacman
@@ -90,4 +90,8 @@ void Pacman::loadFromFile(ifstream& level, bool nuevo) {
 void Pacman::saveToFile(ofstream& level) {
 	GameCharacter::saveToFile(level);
 	level << energy << " " << lifes;
+}
+
+void Pacman::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game) {
+	loadCharacter(level, esqTextX, cellSize, texture, game);
 }

@@ -2,18 +2,18 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include <fstream> // Para los archivos de entrada/salida
-
 #include "GameCharacter.h"
-#include "GameMap.h"
-class Game; // Evita llamadas circulares
+//#include "GameMap.h"
+
+
 const int ENERGY_VIT = 200;
 
 class Pacman :
 	public GameCharacter
 {
 private:
-	Game* game = nullptr;
-
+	
+	par dirNext;
 	int dirNextX,
 		dirNextY;
 
@@ -43,5 +43,7 @@ public:
 	void Pacman::loadFromFile(ifstream& level, bool nuevo);
 	// Guarda en un archivo la información del Pacman
 	void Pacman::saveToFile(ofstream& level);
+	// Carga el pacman como tal
+	void Pacman::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game);
 };
 

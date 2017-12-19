@@ -2,7 +2,8 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "GameObject.h"
-#include "Game.h"
+
+class Game; // Evita llamadas circulares
 
 // struct "par" para manejar direcciones y posiciones como pares (x, y) de enteros
 struct par {
@@ -34,7 +35,7 @@ public:
 	void GameCharacter::render();
 	void GameCharacter::loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter
 	void GameCharacter::saveToFile(ofstream& level); // Escribe posAct, posIni, dir del GameCharacter
-	bool GameCharacter::sigPosToroideEsLibre(par dirAct) { return game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y); }; // Solo mira que en dir se pueda mover (para el random de fantasmas)
+	bool GameCharacter::sigPosToroideEsLibre(par dirAct); // Solo mira que en dir se pueda mover (para el random de fantasmas)
 	bool GameCharacter::sigPosToroideEsLibre(par dirAct, par& nextPos); // Devuelve la sig posicion en la direccion dir
 };
 

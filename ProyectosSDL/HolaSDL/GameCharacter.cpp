@@ -1,9 +1,8 @@
 #include "GameCharacter.h"
+#include "Game.h"
 
+GameCharacter::GameCharacter():GameObject() {
 
-
-GameCharacter::GameCharacter()
-{
 }
 
 
@@ -54,4 +53,8 @@ bool GameCharacter::sigPosToroideEsLibre(par dirAct, par& nextPos) {
 	nextPos = posAct;
 	game->nextPosToroide(nextPos.x, nextPos.y, dirAct.x, dirAct.y);
 	return game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y);
+}
+
+bool GameCharacter::sigPosToroideEsLibre(par dirAct) { 
+	return (game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y)); 
 }
