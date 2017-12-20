@@ -19,6 +19,7 @@ void SmartGhost::update() {
 
 // Lee los datos de archivo
 void SmartGhost::loadFromFile(ifstream& level) {
+	GameCharacter::loadFromFile(level);
 	level >> age;
 }
 
@@ -39,15 +40,19 @@ void SmartGhost::dieOld() {
 
 // De las dirs posibles, busca la que mas le acerque a Pacman
 void SmartGhost::searchDir() {
+
+	possibleDirs();
+
 	if (numDirs > 1) { // Solo busca dir si tiene más de una posibilidad
 		int dirAux, i;
+
 		int dist = 3000;
 		int auxDistY, aux;
 		for (i = 0; i < numDirs; i++) {
 			// Calcula la coordenada que le deja mas cerca del pacman
 			aux = abs((posAct.x + dir.x) - targetPos->x);
 			auxDistY = abs((posAct.y + dir.x) - targetPos->y);
-			if (aux > auxDistY)
+			if (aux < auxDistY)
 				aux = auxDistY;
 			// Guarda la pos de la dir mas cercana
 			if (aux < dist) {

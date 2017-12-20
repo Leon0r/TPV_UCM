@@ -16,7 +16,9 @@ protected:
 	par posIni; // Pos inicial del character para reiniciarla al morir
 	par posAct; // Pos actual del character
 	par dir; // Direccion actual del character
-	par posAux;
+	par posAux = { 0, 0 };
+
+	par* targetPos = nullptr; // Posicion hacia la que se mueve
 
 	par frame; // Coordenadas en la textura del frame (esquina sup izquierda) concreto a renderizar
 	// Como todos los personajes tienen las animaciones colocadas igual, 
@@ -32,6 +34,10 @@ public:
 
 	// Devuelve la posicion actual del personaje
 	virtual void getPosAct(int& posX, int& posY) { posX = posAct.x; posY = posAct.y; };
+	virtual par* getPosAct() { return &posAct; };
+	// Recibe la posicion hacia la que se tiene que mover
+	void setTarget(par* posPacman) { targetPos = posPacman; };
+
 	// devuelve el tipo del personaje
 	virtual int getType() { return type; }; // devuelve el tipo del personaje
 

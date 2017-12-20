@@ -15,6 +15,7 @@ class Game
 private:
 	GameMap* map = nullptr;
 	Pacman* pacman = nullptr;
+	SmartGhost* smartGhost = nullptr;
 	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters 
 
 	SDL_Window* window = nullptr;

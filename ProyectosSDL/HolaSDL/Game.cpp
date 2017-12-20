@@ -47,10 +47,10 @@ void Game::loadGame() {
 			// Lee el tipo de fantasma que es
 			level >> typeGhost; // Si es 0, normal, si 1, evolucionado
 			if (typeGhost == 1) {
-				//characters.push_back(new SmartGhost(this));// Crea un nuevo fantasma
-													  // como se ha hecho push back, el último obj de la lista es el fantasma creado
-				//characters.back()->loadCharacter(level, 8, 20, textures[1], this);
-				
+				smartGhost = new SmartGhost(this);
+				characters.push_back(smartGhost);// Crea un nuevo fantasma
+			  // como se ha hecho push back, el último obj de la lista es el fantasma creado
+				characters.back()->loadCharacter(level, 8, 20, textures[1], this);
 			}
 			else {
 				characters.push_back(new Ghost(this));// Crea un nuevo fantasma
@@ -64,7 +64,10 @@ void Game::loadGame() {
 		// como se ha hecho push back, el último obj de la lista es el fantasma creado
 		characters.back()->loadCharacter(level, 10, 20, textures[1], this);
 		
-
+		// asigna a los smart el target
+		for (auto c : characters)
+			if(c->getType() == 1)
+				c->setTarget(pacman->getPosAct());
 
 		// Primero pintar fondo (mapa) y luego lo demas
 		map->render();
