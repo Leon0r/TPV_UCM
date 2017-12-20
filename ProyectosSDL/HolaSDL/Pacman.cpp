@@ -18,10 +18,9 @@ void Pacman::update() {
 		dir.x = dirNext.x;
 		dir.y = dirNext.y;
 	}
-	// Comprueba colisión entre Pacman-Fantasmas
-	/*if (game->collisionWithCharacter(dirNext.x, dirNext.y))
-		lessLife();*/
-
+	
+	checkCollisions();
+	
 	if (energy > 0)
 		energy -= 1;
 
@@ -29,6 +28,16 @@ void Pacman::update() {
 	if (game->cellEatable(posAct.x, posAct.y))
 		energy = ENERGY_VIT;
 	GameCharacter::update();
+}
+
+void Pacman::checkCollisions() {
+
+	list <GameCharacter*>::iterator it;
+	if (game->isAGhost(posAct.x + dirNext.x, posAct.y + dirNext.y, it) && energy == 0)
+		lessLife();
+
+	if (game->isAGhost(posAct.x + dirNext.x, posAct.y + dirNext.y, it) && energy > 0)
+		(*it)->die();
 }
 
 // Pierde una vida y vuelve a su posición inicial

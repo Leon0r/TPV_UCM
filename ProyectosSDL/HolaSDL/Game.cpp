@@ -210,25 +210,19 @@ bool Game::cellEatable(const int x, const int y) {
 }
 
 // Mira si en hay fantasmas en la pos (x,y)
-bool Game::isAGhost(int x, int y) {
+bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it) {
 	bool ghost = false;
 	int posX, posY;
 	it = characters.begin();
 	it++; // Esto omite PacMan
-	
-	while (it != characters.end() && !ghost) 
+
+	while (it != characters.end() && !ghost)
 	{
 		(*it)->getPosAct(posX, posY);
 		ghost = (posX == x && posY == y);
 		it++;
 	}
 	return ghost;
-
-		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
-		/// TODO: crush se pone a true si la posicion de alg�n fantasma coincide con x && y
-
-		/// ESTO HABR�A QUE SACARLO A GHOST Y PACMAN??
-		/// TODO: si crush es true y pacman tiene vitamina, ghost muere, si no pacman pierde vida
 }
 
 // Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide

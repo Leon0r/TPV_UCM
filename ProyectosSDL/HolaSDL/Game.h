@@ -10,14 +10,17 @@
 const int NUM_TEXTURES = 5;
 const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
 
+
 class Game
 {
 private:
+	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters
+	list <GameCharacter*>::iterator it;
 	GameMap* map = nullptr;
 	Pacman* pacman = nullptr;
 	SmartGhost* smartGhost = nullptr;
-	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters
-	list <GameCharacter*>::iterator it;
+
+
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -64,6 +67,7 @@ private:
 	void Game::Up(int& posY);
 
 public:
+
 	Game();
 	~Game();
 	// Inicializa todos los atributos
@@ -85,6 +89,6 @@ public:
 	// Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
 	bool Game::cellEatable(const int x, const int y);
 	// Mira si en hay personaje en la pos (x,y)
-	bool Game::isAGhost(int x, int y);
+	bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it);
 };
 

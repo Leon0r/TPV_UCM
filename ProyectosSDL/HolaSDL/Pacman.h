@@ -8,7 +8,7 @@ class Pacman :
 	public GameCharacter
 {
 private:
-	
+
 	par dirNext = { 0, 0 };
 
 	int lifes,
@@ -25,6 +25,8 @@ public:
 
 	// Actualiza el estado de PacMan (direcci�n y posici�n actual)
 	virtual void update();
+
+	void Pacman::checkCollisions();
 	// Pierde una vida y vuelve a su posici�n inicial
 	void lessLife();
 	// Cambia el frame de la animaci�n seg�n su direcci�n
