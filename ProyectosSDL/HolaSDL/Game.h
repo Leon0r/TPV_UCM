@@ -16,7 +16,8 @@ private:
 	GameMap* map = nullptr;
 	Pacman* pacman = nullptr;
 	SmartGhost* smartGhost = nullptr;
-	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters 
+	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters
+	list <GameCharacter*>::iterator it;
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -84,6 +85,6 @@ public:
 	// Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
 	bool Game::cellEatable(const int x, const int y);
 	// Mira si en hay personaje en la pos (x,y)
-	bool Game::collisionWithCharacter(int x, int y);
+	bool Game::isAGhost(int x, int y);
 };
 

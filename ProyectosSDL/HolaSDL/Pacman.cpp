@@ -19,8 +19,8 @@ void Pacman::update() {
 		dir.y = dirNext.y;
 	}
 	// Comprueba colisión entre Pacman-Fantasmas
-	if (game->collisionWithCharacter(dirNext.x, dirNext.y))
-		lessLife();
+	/*if (game->collisionWithCharacter(dirNext.x, dirNext.y))
+		lessLife();*/
 
 	if (energy > 0)
 		energy -= 1;

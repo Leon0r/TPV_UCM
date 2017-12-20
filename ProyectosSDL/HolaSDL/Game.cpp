@@ -54,9 +54,9 @@ void Game::loadGame() {
 		characters.front()->loadCharacter(level, 10, 20, textures[4], this);
 		
 		// asigna a los smart el target
-		for (auto c : characters)
-			if(c->getType() == 1)
-				c->setTarget(pacman->getPosAct());
+		for (it = characters.begin(); it != characters.end(); ++it)
+			if(typeid (*(*it)) == typeid (SmartGhost))
+				(*it)->setTarget(pacman->getPosAct());
 
 		// Primero pintar fondo (mapa) y luego lo demas
 		map->render();
@@ -171,7 +171,6 @@ void Game::handleEvents() {
 					}
 				else if ((x > (winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y >((winHeigth / 2) + 150) && y < ((winHeigth / 2) + 250))) {
 					//save = true;
-					// loadFromFile(saveState());
 					menu = false;
 					cout << "Has pulsado";
 				}
@@ -210,16 +209,20 @@ bool Game::cellEatable(const int x, const int y) {
 	return vit;
 }
 
-// Mira si en hay personaje en la pos (x,y)
-bool Game::collisionWithCharacter(int x, int y) {
-	bool crush = false;
+// Mira si en hay fantasmas en la pos (x,y)
+bool Game::isAGhost(int x, int y) {
+	bool ghost = false;
 	int posX, posY;
-	for (auto c : characters) {
-		c->getPosAct(posX, posY);
-		if (posX == x && posY == y)
-			crush = true;
+	it = characters.begin();
+	it++; // Esto omite PacMan
+	
+	while (it != characters.end() && !ghost) 
+	{
+		(*it)->getPosAct(posX, posY);
+		ghost = (posX == x && posY == y);
+		it++;
 	}
-	return crush;
+	return ghost;
 
 		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
 		/// TODO: crush se pone a true si la posicion de alg�n fantasma coincide con x && y
