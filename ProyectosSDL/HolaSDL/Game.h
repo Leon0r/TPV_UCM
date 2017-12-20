@@ -54,6 +54,7 @@ private:
 	// Eventos
 	SDL_Event event;
 	bool exit = false;
+	bool menu = true;
 
 	// Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
 	void Game::Right(int& posX);

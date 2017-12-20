@@ -49,16 +49,23 @@ void SmartGhost::searchDir() {
 		int dist = 3000;
 		int aux;
 		for (i = 0; i < numDirs; i++) {
-			// Calcula la coordenada que le deja mas cerca del pacman
-			aux = abs((posAct.x + directions[i].x) - targetPos->x) +
-				abs((posAct.y + directions[i].y) - targetPos->y);
+			/*if (posAct.x == targetPos->x) {
 
-			// Guarda la pos de la dir mas cercana
-			if (aux < dist) {
-				dist = aux;
-				dirAux = i; 
 			}
+			else if (posAct.y == targetPos->y) {
 
+			}
+			else */{
+				// Calcula la coordenada que le deja mas "cerca" del pacman
+				aux = abs((posAct.x + directions[i].x) - targetPos->x) +
+					abs((posAct.y + directions[i].y) - targetPos->y);
+
+				// Guarda la pos de la dir mas cercana
+				if (aux < dist) {
+					dist = aux;
+					dirAux = i;
+				}
+			}
 		}
 		dir.x = directions[dirAux].x;
 		dir.y = directions[dirAux].y;

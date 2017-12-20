@@ -107,13 +107,15 @@ void Game::loadMenu() {
 		textures[2]->renderFullText(rectDest);
 
 		SDL_RenderPresent(renderer);
-		system("pause");
 	}
 }
 
 // Bucle principal del juego
 void Game::run() {
 	loadMenu();
+	while(menu)
+		handleEvents();
+	
 	loadGame();
 	while (!exit) {
 		startTime = SDL_GetTicks();
@@ -153,7 +155,7 @@ void Game::handleEvents() {
 			else if (event.key.keysym.sym == SDLK_LEFT)
 				pacman->nextDir(-1, 0);
 			else if (event.key.keysym.sym == SDLK_RIGHT)
-				pacman->nextDir(-1, 0);
+				pacman->nextDir(1, 0);
 		}
 		else if (event.type == SDL_MOUSEBUTTONDOWN)
 			if (event.button.button == SDL_BUTTON_LEFT)
@@ -161,16 +163,16 @@ void Game::handleEvents() {
 				
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				if ((x > 25 && x < 250) && (y > 250 && y < 350))
+				if (((x > winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > winHeigth / 2 && y < winHeigth / 2 + 100))
 				{
 					//loadfromfile(getFileName());
-					//menu = false;
+					menu = false;
 					cout << "Has pulsado";
 					}
-				else if ((x > 25 && x < 250) && (y > 400 && y < 500)) {
+				else if ((x > (winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y >((winHeigth / 2) + 150) && y < ((winHeigth / 2) + 250))) {
 					//save = true;
 					// loadFromFile(saveState());
-					//menu = false;
+					menu = false;
 					cout << "Has pulsado";
 				}
 			}
