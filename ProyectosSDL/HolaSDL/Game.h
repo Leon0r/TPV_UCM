@@ -75,7 +75,7 @@ public:
 	void Game::nextPosToroide(int& posX, int& posY, const int dirX, const int dirY);
 	// Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
 	bool Game::cellEatable(const int x, const int y);
-	// Mira si en hay fantasma en la pos (x,y)
-	void Game::collisionWithCharacter(int x, int y, bool crush);
+	// Mira si en hay personaje en la pos (x,y)
+	bool Game::collisionWithCharacter(int x, int y);
 };
 

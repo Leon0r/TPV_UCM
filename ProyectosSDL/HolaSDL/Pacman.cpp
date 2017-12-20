@@ -18,19 +18,16 @@ void Pacman::update() {
 		dir.x = dirNext.x;
 		dir.y = dirNext.y;
 	}
-	// Comprueba colisión entre fantasma-Pacman
-	///TODO: game->collisionWithGhost()
+	// Comprueba colisión entre Pacman-Fantasmas
+	if (game->collisionWithCharacter(dirNext.x, dirNext.y))
+		lessLife();
 
 	if (energy > 0)
 		energy -= 1;
 
-	/// NO SE SI ESTE IF ES NECESARIO POR EL NEXTCELL
-	//if (lifes > 0 && game->nextCell(posAct.x, posAct.y, dir.x, dir.y))
-	//{
-		// Recarga energía al comerse una vitamina COMENTADO POR COMPILADO
+	// Recarga energía al comerse una vitamina
 	if (game->cellEatable(posAct.x, posAct.y))
 		energy = ENERGY_VIT;
-	//}
 }
 
 // Pierde una vida y vuelve a su posición inicial

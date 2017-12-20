@@ -141,12 +141,16 @@ bool Game::cellEatable(const int x, const int y) {
 	return vit;
 }
 
-// Mira si en hay fantasma en la pos (x,y)
-void Game::collisionWithCharacter(int x, int y, bool crush) {
-	crush = false;
-
-	for (auto c : characters)
-		c->getPosAct(x, y);
+// Mira si en hay personaje en la pos (x,y)
+bool Game::collisionWithCharacter(int x, int y) {
+	bool crush = false;
+	int posX, posY;
+	for (auto c : characters) {
+		c->getPosAct(posX, posY);
+		if (posX == x && posY == y)
+			crush = true;
+	}
+	return crush;
 
 		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
 		/// TODO: crush se pone a true si la posicion de algún fantasma coincide con x && y
