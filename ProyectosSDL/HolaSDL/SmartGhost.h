@@ -11,10 +11,10 @@ private:
 
 public:
 	SmartGhost();
-	~SmartGhost();
+	virtual ~SmartGhost();
 
-	void SmartGhost::update();
-	void SmartGhost::loadFromFile(ifstream& level);
-	void SmartGhost::saveToFile(ofstream& level);
+	virtual void SmartGhost::update();
+	virtual void SmartGhost::loadFromFile(ifstream& level);
+	virtual void SmartGhost::saveToFile(ofstream& level);
 };
 

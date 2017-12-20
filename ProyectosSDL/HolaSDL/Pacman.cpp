@@ -69,10 +69,9 @@ void Pacman::nextDir(int newDirX, int newDirY) {
 
 // Carga de archivo la información del Pacman
 void Pacman::loadFromFile(ifstream& level) {
-	level >> posAct.x >> posAct.y >> dir.x >> dir.y >> energy >> lifes;
-	/*if(!nuevo) // Si es un archivo de guardado lee también la energía y las vidas
+	GameCharacter::loadFromFile(level);
+	if(!level.eof()) // Si es un archivo de guardado lee también la energía y las vidas
 		level >> energy >> lifes;
-		*/
 }
 
 // Guarda en un archivo la información del Pacman

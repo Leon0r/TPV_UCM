@@ -143,7 +143,8 @@ void Game::collisionWithCharacter(int x, int y, bool crush) {
 	crush = false;
 
 	for (auto c : characters)
-		c->render();
+		c->getPosAct(x, y);
+
 		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
 		/// TODO: crush se pone a true si la posicion de algún fantasma coincide con x && y
 

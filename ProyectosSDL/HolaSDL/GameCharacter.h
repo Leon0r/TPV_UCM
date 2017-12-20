@@ -36,5 +36,7 @@ public:
 	virtual void saveToFile(ofstream& level); // Escribe posAct, posIni, dir del GameCharacter
 	bool sigPosToroideEsLibre(par dirAct); // Solo mira que en dir se pueda mover (para el random de fantasmas)
 	bool sigPosToroideEsLibre(par dirAct, par& nextPos); // Devuelve la sig posicion en la direccion dir
+
+	virtual void getPosAct(int& posX, int& posY) { posX = posAct.x; posY = posAct.y; };
 };
 
