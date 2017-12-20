@@ -36,8 +36,7 @@ void Game::loadGame() {
 			// Lee el tipo de fantasma que es
 			level >> typeGhost; // Si es 0, normal, si 1, evolucionado
 			if (typeGhost == 1) {
-				smartGhost = new SmartGhost(this);
-				characters.push_back(smartGhost);// Crea un nuevo fantasma
+				characters.push_back(new SmartGhost(this));// Crea un nuevo fantasma
 			  // como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
 				characters.back()->loadCharacter(level, 8, 20, textures[4], this);
 			}
