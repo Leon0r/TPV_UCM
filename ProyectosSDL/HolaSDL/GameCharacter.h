@@ -28,16 +28,22 @@ protected:
 
 public:
 	virtual ~GameCharacter();
+
+	// Devuelve la posicion actual del personaje
+	virtual void getPosAct(int& posX, int& posY) { posX = posAct.x; posY = posAct.y; };
+	// devuelve el tipo del personaje
+	virtual int getType() { return type; }; // devuelve el tipo del personaje
+
 	void loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures* texture, Game* game);
 	virtual void update();
-
 	virtual void render();
-	virtual void loadFromFile(ifstream& level); // Lee lo necesario del archivo para cargar el GameCharacter
-	virtual void saveToFile(ofstream& level); // Escribe posAct, posIni, dir del GameCharacter
-	bool sigPosToroideEsLibre(par dirAct); // Solo mira que en dir se pueda mover (para el random de fantasmas)
-	bool sigPosToroideEsLibre(par dirAct, par& nextPos); // Devuelve la sig posicion en la direccion dir
-
-	virtual void getPosAct(int& posX, int& posY) { posX = posAct.x; posY = posAct.y; }; // Devuelve la posicion actual del personaje
-	virtual int getType() { return type; }; // devuelve el tipo del personaje
+	// Lee lo necesario del archivo para cargar el GameCharacter
+	virtual void loadFromFile(ifstream& level);
+	// Escribe posAct, posIni, dir del GameCharacter
+	virtual void saveToFile(ofstream& level);
+	// Devuelve true si la sig posicion en direccion dir es libre y la devuelve en nextPos la sig posicion calculada
+	bool sigPosToroideEsLibre(par dirAct, par& nextPos);
+	// Solo mira que en dir se pueda mover (para el random de fantasmas)
+	bool sigPosToroideEsLibre(par dirAct); 
  };
 

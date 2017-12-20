@@ -6,6 +6,16 @@ GameMap::GameMap():GameObject(){
 GameMap::GameMap(Game* game):GameObject(game) {
 }
 
+GameMap::~GameMap()
+{
+	for (int i = 0; i < numRowMap; i++)
+		delete map[i];
+
+	delete map;
+}
+
+/// SON NECESARIOS LOS DOS ¿¿
+// Lee lo necesario del archivo level para cargar el mapa
 void GameMap::loadMap(ifstream& level, int cellSize, Textures* texture) {
 
 	loadGameObject(cellSize, texture);
@@ -72,16 +82,7 @@ void GameMap::render() {
 	}
 }
 
-void GameMap::update() 
+void GameMap::update()
 {
 
-}
-
-// Destruye el mapa y reinicia valores
-GameMap::~GameMap()
-{
-	for (int i = 0; i < numRowMap; i++)
-		delete map[i];
-
-	delete map;
 }

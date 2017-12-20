@@ -20,18 +20,28 @@ public:
 	GameMap(Game* game);
 	virtual ~GameMap();
 
-	void fillCell(int row, int col, int type); // Rellena una celda con el tipo type
+ 
 
 	// Devuelve el tipo de la celda													
 	int getCellType(int row, int col) {return(static_cast<int>(map[row][col]));};
+	// Devuelve el numero de filas que hay en el mapa
+	int getNumRow() { return numRowMap; }; 
+	// Devuelve el numero de columnas que hay en el mapa
+	int getNumCols() { return numColMap; }; 
 
-	int getNumRow() { return numRowMap; }; // Devuelve el numero de filas que hay en el mapa
-	int getNumCols() { return numColMap; }; // Devuelve el numero de columnas que hay en el mapa
+	// Rellena una celda con el tipo type
+	void fillCell(int row, int col, int type);
 
-	void loadMap(ifstream& level, int cellSize, Textures* texture); // Lee lo necesario del archivo level para cargar el mapa
-	virtual void loadFromFile(ifstream& level); // Lee lo necesario del archivo level para cargar el mapa
-	virtual void saveToFile(ofstream& level); // Escribe los datos del mapa en el archivo level
+	/// SON NECESARIOS LOS DOS ¿¿
+	// Lee lo necesario del archivo level para cargar el mapa
+	void loadMap(ifstream& level, int cellSize, Textures* texture); 
+	// Lee lo necesario del archivo level para cargar el mapa
+	virtual void loadFromFile(ifstream& level);
+	// Escribe los datos del mapa en el archivo level
+	virtual void saveToFile(ofstream& level); 
+	// Pinta el mapa en pantalla
+	virtual void render(); 
+
 	virtual void update();
-	virtual void render(); // Pinta el mapa en pantalla
 };
 

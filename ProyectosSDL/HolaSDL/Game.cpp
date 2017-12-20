@@ -60,9 +60,7 @@ void Game::loadGame() {
 		map->render();
 		for (auto c : characters)
 			c->render();
-		/*for (it = characters.begin(); it != characters.end(); it++) {
-			(*it)->render();
-		}*/
+
 		level.close();
 		SDL_RenderPresent(renderer);
 	}
@@ -113,12 +111,11 @@ void Game::handleEvents() {
 }
 
 // Devuelve true si la sig casilla en direccion dir es vacia
-// El 1 es muro
 bool Game::nextCell(int posX, int posY, const int dirX, const int dirY) {
 	int auxX = posX;
 	int auxY = posY;
 	nextPosToroide(auxX, auxY, dirX, dirY);
-	return (map->getCellType(auxY, auxX) != 1);
+	return (map->getCellType(auxY, auxX) != 1); // El 1 es muro
 }
 
 // Calcula la sig pos (con toroide)

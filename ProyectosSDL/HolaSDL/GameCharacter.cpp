@@ -59,6 +59,7 @@ bool GameCharacter::sigPosToroideEsLibre(par dirAct, par& nextPos) {
 	return game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y);
 }
 
+// Solo mira que en dir se pueda mover (para el random de fantasmas)
 bool GameCharacter::sigPosToroideEsLibre(par dirAct) { 
 	return (game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y)); 
 }

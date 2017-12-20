@@ -2,6 +2,7 @@
 #include "Game.h"
 
 Pacman::Pacman() :GameCharacter(), lifes(0), energy(0), dirNext{0,0} {}
+
 Pacman::Pacman(Game* game):GameCharacter(game) {
 	type = 2;
 }
@@ -81,6 +82,7 @@ void Pacman::saveToFile(ofstream& level) {
 	level << energy << " " << lifes;
 }
 
+// Carga el pacman como tal
 void Pacman::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game) {
 	loadCharacter(level, esqTextX, cellSize, texture, game);
 }

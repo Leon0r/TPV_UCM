@@ -15,8 +15,6 @@ private:
 	GameMap* map = nullptr;
 	Pacman* pacman = nullptr;
 	list <GameCharacter*> characters; // crea una lista de punteros a gameCharacters 
-	//list <GameCharacter*>::iterator it; // Crear el iterador de la lista (puntero a los punteros de la lista)
-
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -52,6 +50,7 @@ private:
 	SDL_Event event;
 	bool exit = false;
 
+	// Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
 	void Game::Right(int& posX);
 	void Game::Left(int& posX);
 	void Game::Down(int& posY);
@@ -62,12 +61,12 @@ public:
 	~Game();
 	// Inicializa todos los atributos
 	void Game::loadGame();
+	// Bucle principal del juego
+	void Game::run();
 	// Dibuja el estado actual del juego
 	void Game::render();
 	// Actualiza el estado de los elementos
 	void Game::update();
-	// Bucle principal del juego
-	void Game::run();
 	// Se encarga de los eventos de teclado
 	void Game::handleEvents();
 	// Devuelve true si la sig casilla en direccion dir es vacia
