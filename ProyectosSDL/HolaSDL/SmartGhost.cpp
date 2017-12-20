@@ -4,7 +4,9 @@
 SmartGhost::SmartGhost()
 {
 }
-
+SmartGhost::SmartGhost(Game* game) :Ghost(game){
+	type = 1;
+}
 
 SmartGhost::~SmartGhost()
 {
@@ -16,6 +18,7 @@ void SmartGhost::update() {
 void SmartGhost::loadFromFile(ifstream& level) {
 	level >> edad;
 }
+
 void SmartGhost::saveToFile(ofstream& level) {
 	level << edad;
 }

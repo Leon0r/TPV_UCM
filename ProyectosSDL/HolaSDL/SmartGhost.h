@@ -9,6 +9,8 @@ private:
 
 public:
 	SmartGhost();
+	SmartGhost(Game* game);
+
 	virtual ~SmartGhost();
 
 	virtual void SmartGhost::update();

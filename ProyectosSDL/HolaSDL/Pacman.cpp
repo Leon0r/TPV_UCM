@@ -2,7 +2,9 @@
 #include "Game.h"
 
 Pacman::Pacman() :GameCharacter(), lifes(0), energy(0), dirNext{0,0} {}
-Pacman::Pacman(Game* game):GameCharacter(game) {}
+Pacman::Pacman(Game* game):GameCharacter(game) {
+	type = 2;
+}
 
 Pacman::~Pacman()
 {

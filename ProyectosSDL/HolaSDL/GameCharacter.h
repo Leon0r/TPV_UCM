@@ -21,6 +21,8 @@ protected:
 	// Como todos los personajes tienen las animaciones colocadas igual, 
 	// solo hace falta saber donde empieza cada una
 
+	int type; // guarda el tipo de personaje (0 = fant tonto, 1 = fant evol, 2 = pacman)  
+
 	GameCharacter();
 	GameCharacter(Game* game);
 
@@ -35,6 +37,7 @@ public:
 	bool sigPosToroideEsLibre(par dirAct); // Solo mira que en dir se pueda mover (para el random de fantasmas)
 	bool sigPosToroideEsLibre(par dirAct, par& nextPos); // Devuelve la sig posicion en la direccion dir
 
-	virtual void getPosAct(int& posX, int& posY) { posX = posAct.x; posY = posAct.y; };
-};
+	virtual void getPosAct(int& posX, int& posY) { posX = posAct.x; posY = posAct.y; }; // Devuelve la posicion actual del personaje
+	virtual int getType() { return type; }; // devuelve el tipo del personaje
+ };
 
