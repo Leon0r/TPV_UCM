@@ -25,7 +25,7 @@ void Game::loadGame() {
 		// Inicializa el mapa con level01
 		ifstream level("..\\levels\\level01.pac");
 		map = new GameMap(this);
-		map->loadMap(level, 20, textures[0]);
+		map->loadMap(level, 20, textures[3]);
 		// Lee el n� de fantasmas
 		int numGhost, typeGhost;
 		level >> numGhost;
@@ -39,19 +39,19 @@ void Game::loadGame() {
 				smartGhost = new SmartGhost(this);
 				characters.push_back(smartGhost);// Crea un nuevo fantasma
 			  // como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-				characters.back()->loadCharacter(level, 8, 20, textures[1], this);
+				characters.back()->loadCharacter(level, 8, 20, textures[4], this);
 			}
 			else {
 				characters.push_back(new Ghost(this));// Crea un nuevo fantasma
 				  // como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-				characters.back()->loadCharacter(level, 0, 20, textures[1], this); 
+				characters.back()->loadCharacter(level, 0, 20, textures[4], this); 
 			}
 		}
 		// Carga pacman
 		pacman = new Pacman(this);
 		characters.push_front(pacman);// Crea un nuevo fantasma
 		// como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-		characters.front()->loadCharacter(level, 10, 20, textures[1], this);
+		characters.front()->loadCharacter(level, 10, 20, textures[4], this);
 		
 		// asigna a los smart el target
 		for (auto c : characters)
