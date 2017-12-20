@@ -22,20 +22,21 @@ private:
 	unsigned int fw = 0; // Frame width (px)
 	unsigned int fh = 0; // Frame heigth (px)
 
-	unsigned int numRows; // Número de filas de los frames de la textura
-	unsigned int numCols; // Número de columnas de los frames de la textura
+	unsigned int numRows; // Nï¿½mero de filas de los frames de la textura
+	unsigned int numCols; // Nï¿½mero de columnas de los frames de la textura
 
 public:
 	Textures();
 
-	~Textures(); // Devolver todos los valores a 0};
+	// Destruye la textura y pone el puntero a null
+	~Textures();
 
 	// Carga textura de una imagen
 	bool Textures::loadTextureFromImage(SDL_Renderer* renderer, const char* filename, int numFils = 1, int numColumns = 1);
 
-	// Renderiza la textura entera en la posición y tamaño definidas por rectDest
+	// Renderiza la textura entera en la posiciï¿½n y tamaï¿½o definidas por rectDest
 	void Textures::renderFullText(const SDL_Rect& rectDest, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-	// Renderiza el frame (row, col) en la posición y tamaño definida por destRect
+	// Renderiza el frame (row, col) en la posiciï¿½n y tamaï¿½o definida por destRect
 	void Textures::renderFrame(const SDL_Rect& destRect, unsigned int row, unsigned int col, SDL_RendererFlip flip = SDL_FLIP_NONE);
 };

@@ -5,7 +5,7 @@ Textures::Textures()
 }
 
 // Destruye la textura y pone el puntero a null
-Textures::~Textures(){
+Textures::~Textures() {
 	SDL_DestroyTexture(texture);
 	texture = nullptr;
 	w = h = fw = fh = numCols = numRows = 0; 
@@ -13,7 +13,7 @@ Textures::~Textures(){
 
 // Carga textura de una imagen
 bool Textures::loadTextureFromImage(SDL_Renderer* renderer, const char* filename, int numFils, int numColumns) {
-	textRender = renderer; // Para que la textura apunte al renderer del juego y no haya que pasarlo más veces al renderizar
+	textRender = renderer; // Para que la textura apunte al renderer del juego y no haya que pasarlo mï¿½s veces al renderizar
 
 						   // Cargar textura
 	SDL_Surface* surface = IMG_Load(filename); // Cargar imagen
@@ -26,7 +26,7 @@ bool Textures::loadTextureFromImage(SDL_Renderer* renderer, const char* filename
 		// Guarda el ancho y alto de la textura en w y h respectivamente
 		SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
 
-		// Guarda el número de filas y columnas de la textura
+		// Guarda el nï¿½mero de filas y columnas de la textura
 		numCols = numColumns;
 		numRows = numFils;
 
@@ -43,14 +43,14 @@ bool Textures::loadTextureFromImage(SDL_Renderer* renderer, const char* filename
 		return (false);
 }
 
-// Renderiza la textura entera en la posición y tamaño definidas por rectDest
+// Renderiza la textura entera en la posiciï¿½n y tamaï¿½o definidas por rectDest
 void Textures::renderFullText(const SDL_Rect& rectDest, SDL_RendererFlip flip) {
 
 	if (texture != nullptr)
 		SDL_RenderCopyEx(textRender, texture, nullptr, &rectDest, 0, 0, flip); // SDL_Point*? declararlo o es necesio si o si?
 }
 
-// Renderiza el frame (row, col) en la posición y tamaño definida por rectDest
+// Renderiza el frame (row, col) en la posiciï¿½n y tamaï¿½o definida por rectDest
 // Los frames empiezan en (0,0)
 void Textures::renderFrame(const SDL_Rect& rectDest, unsigned int row, unsigned int col, SDL_RendererFlip flip) {
 

@@ -4,7 +4,7 @@
 #include "SDL_image.h"
 #include "Textures.h"
 // Para los archivos de entrada/salida
-#include <fstream> 
+#include <fstream>
 using namespace std;
 class Game;
 

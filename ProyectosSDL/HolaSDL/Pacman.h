@@ -1,10 +1,5 @@
 #pragma once
-#include "checkML.h"
-#include "SDL.h"
-#include "SDL_image.h"
-#include <fstream> // Para los archivos de entrada/salida
 #include "GameCharacter.h"
-//#include "GameMap.h"
 
 const int ENERGY_VIT = 200;
 class Game;
@@ -19,7 +14,7 @@ private:
 	int lifes,
 		energy = ENERGY_VIT;
 
-	bool switchAnim = false; // Cambio entre los dos frames de animación
+	bool switchAnim = false; // Cambio entre los dos frames de animaciï¿½n
 
 
 public:
@@ -28,17 +23,17 @@ public:
 
 	virtual ~Pacman();
 
-	// Actualiza el estado de PacMan (dirección y posición actual)
+	// Actualiza el estado de PacMan (direcciï¿½n y posiciï¿½n actual)
 	virtual void update();
-	// Pierde una vida y vuelve a su posición inicial
+	// Pierde una vida y vuelve a su posiciï¿½n inicial
 	void lessLife();
-	// Cambia el frame de la animación según su dirección
+	// Cambia el frame de la animaciï¿½n segï¿½n su direcciï¿½n
 	void numFrameAnim();
-	// Asigna a la siguiente posición los valores newDir
+	// Asigna a la siguiente posiciï¿½n los valores newDir
 	void nextDir(int newDirX, int newDirY);
-	// Carga de archivo la información del Pacman
+	// Carga de archivo la informaciï¿½n del Pacman
 	virtual void loadFromFile(ifstream& level);
-	// Guarda en un archivo la información del Pacman
+	// Guarda en un archivo la informaciï¿½n del Pacman
 	virtual void saveToFile(ofstream& level);
 	// Carga el pacman como tal
 	void loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game);
