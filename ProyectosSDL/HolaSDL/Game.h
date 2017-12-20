@@ -7,7 +7,7 @@
 #include "Pacman.h"
 #include "Textures.h"
 
-const int NUM_TEXTURES = 2;
+const int NUM_TEXTURES = 5;
 const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
 
 class Game
@@ -37,8 +37,11 @@ private:
 
 	// Array con la información de las texturas
 	infoText infoT[NUM_TEXTURES]{
+		{ "..\\images\\Background.png", 1, 1 },
+		{ "..\\images\\LoadGame.png", 1, 1 },
+		{ "..\\images\\NewGame.png", 1, 1 },
 		{ "..\\sprites\\pacmanCellsFull.png", 4, 1 },
-		{ "..\\sprites\\pacmanSheet.png", 4, 14 }
+		{ "..\\sprites\\pacmanSheet.png", 4, 14 },
 	};
 
 	int posCharactPac; // Guarda la posicion del pacman en el vector
@@ -63,6 +66,8 @@ public:
 	~Game();
 	// Inicializa todos los atributos
 	void Game::loadGame();
+
+	void Game::loadMenu();
 	// Bucle principal del juego
 	void Game::run();
 	// Dibuja el estado actual del juego

@@ -43,7 +43,7 @@ void SmartGhost::searchDir() {
 
 	possibleDirs();
 
-	if (numDirs > 1) { // Solo busca dir si tiene más de una posibilidad
+	if (numDirs > 1) { // Solo busca dir si tiene mï¿½s de una posibilidad
 		int dirAux, i;
 
 		int dist = 3000;

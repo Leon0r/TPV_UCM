@@ -6,6 +6,5 @@ int main(int argc, char* argv[]){
 	game = new Game();
 
 	game->run();
-
 	return 0;
 }

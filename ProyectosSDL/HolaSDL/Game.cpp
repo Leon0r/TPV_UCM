@@ -16,28 +16,17 @@ Game::~Game()
 
 // Inicializa todos los atributos
 void Game::loadGame() {
-	winX = winY = SDL_WINDOWPOS_CENTERED;
-
-	SDL_Init(SDL_INIT_EVERYTHING);
-
-	window = SDL_CreateWindow("PACMAN", winX, winY, winWidth, winHeigth, SDL_WINDOW_SHOWN);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
 	// Para ver si window se inicializa bien
 	if (window == nullptr || renderer == nullptr)
 		cout << "ERROR 404: window or renderer not found.";
 	else {
-		// Inicialización de texturas
-		for (int i = 0; i < NUM_TEXTURES; i++) {
-			textures[i] = new Textures;
-			textures[i]->loadTextureFromImage(renderer, infoT[i].filename, infoT[i].numFils, infoT[i].numCols);
-		}
-
+		// Inicializaciï¿½n de texturas
+		// En el loadMenu()
 		// Inicializa el mapa con level01
 		ifstream level("..\\levels\\level01.pac");
 		map = new GameMap(this);
 		map->loadMap(level, 20, textures[0]);
-		// Lee el nº de fantasmas
+		// Lee el nï¿½ de fantasmas
 		int numGhost, typeGhost;
 		level >> numGhost;
 		
@@ -49,19 +38,19 @@ void Game::loadGame() {
 			if (typeGhost == 1) {
 				smartGhost = new SmartGhost(this);
 				characters.push_back(smartGhost);// Crea un nuevo fantasma
-			  // como se ha hecho push back, el último obj de la lista es el fantasma creado
+			  // como se ha hecho push back, el ï¿½ltimo obj de la lista es el fantasma creado
 				characters.back()->loadCharacter(level, 8, 20, textures[1], this);
 			}
 			else {
 				characters.push_back(new Ghost(this));// Crea un nuevo fantasma
-				  // como se ha hecho push back, el último obj de la lista es el fantasma creado
+				  // como se ha hecho push back, el ï¿½ltimo obj de la lista es el fantasma creado
 				characters.back()->loadCharacter(level, 0, 20, textures[1], this); 
 			}
 		}
 		// Carga pacman
 		pacman = new Pacman(this);
 		characters.push_back(pacman);// Crea un nuevo fantasma
-		// como se ha hecho push back, el último obj de la lista es el fantasma creado
+		// como se ha hecho push back, el ï¿½ltimo obj de la lista es el fantasma creado
 		characters.back()->loadCharacter(level, 10, 20, textures[1], this);
 		
 		// asigna a los smart el target
@@ -79,8 +68,52 @@ void Game::loadGame() {
 	}
 }
 
+void Game::loadMenu() {
+	winX = winY = SDL_WINDOWPOS_CENTERED;
+
+	SDL_Init(SDL_INIT_EVERYTHING);
+
+	window = SDL_CreateWindow("PACMAN", winX, winY, winWidth, winHeigth, SDL_WINDOW_SHOWN);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	// Para ver si window se inicializa bien
+	if (window == nullptr || renderer == nullptr)
+		cout << "ERROR 404: window or renderer not found.";
+	else {
+		// Inicializaciï¿½n de texturas
+		for (int i = 0; i < NUM_TEXTURES; i++) {
+			textures[i] = new Textures;
+			textures[i]->loadTextureFromImage(renderer, infoT[i].filename, infoT[i].numFils, infoT[i].numCols);
+		}
+
+		SDL_Rect rectDest;
+
+		rectDest.x = 0;
+		rectDest.y = 0;
+		rectDest.h = winHeigth;
+		rectDest.w = winWidth;
+		textures[0]->renderFullText(rectDest);
+
+		rectDest.y = (winHeigth / 2) + 150;
+		rectDest.x = winWidth / 5 + 30;
+		rectDest.h = 100;
+		rectDest.w = 300;
+		textures[1]->renderFullText(rectDest);
+
+		rectDest.y = winHeigth / 2;
+		rectDest.x = winWidth / 5 + 30;
+		rectDest.h = 100;
+		rectDest.w = 300;
+		textures[2]->renderFullText(rectDest);
+
+		SDL_RenderPresent(renderer);
+		system("pause");
+	}
+}
+
 // Bucle principal del juego
 void Game::run() {
+	loadMenu();
 	loadGame();
 	while (!exit) {
 		startTime = SDL_GetTicks();
@@ -111,15 +144,36 @@ void Game::handleEvents() {
 	if (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT)
 			exit = true;
-		// Eventos de felchas de dirección
-		else if (event.key.keysym.sym == SDLK_UP)
-			pacman->nextDir(0, -1);
-		else if (event.key.keysym.sym == SDLK_DOWN)
-			pacman->nextDir(0, 1);
-		else if (event.key.keysym.sym == SDLK_LEFT)
-			pacman->nextDir(-1, 0);
-		else if (event.key.keysym.sym == SDLK_RIGHT)
-			pacman->nextDir(1, 0);			
+		// Eventos de felchas de direcciï¿½n
+		else if (event.type == SDL_KEYDOWN) {
+			if (event.key.keysym.sym == SDLK_UP)
+				pacman->nextDir(0, -1);
+			else if (event.key.keysym.sym == SDLK_DOWN)
+				pacman->nextDir(0, 1);
+			else if (event.key.keysym.sym == SDLK_LEFT)
+				pacman->nextDir(-1, 0);
+			else if (event.key.keysym.sym == SDLK_RIGHT)
+				pacman->nextDir(-1, 0);
+		}
+		else if (event.type == SDL_MOUSEBUTTONDOWN)
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				
+				int x, y;
+				SDL_GetMouseState(&x, &y);
+				if ((x > 25 && x < 250) && (y > 250 && y < 350))
+				{
+					//loadfromfile(getFileName());
+					//menu = false;
+					cout << "Has pulsado";
+					}
+				else if ((x > 25 && x < 250) && (y > 400 && y < 500)) {
+					//save = true;
+					// loadFromFile(saveState());
+					//menu = false;
+					cout << "Has pulsado";
+				}
+			}
 	}
 }
 
@@ -146,10 +200,10 @@ void Game::nextPosToroide(int& posX, int& posY, const int dirX, const int dirY) 
 
 // Consulta si la casilla es comestible: comida o energia, en el segundo caso devuelve true
 bool Game::cellEatable(const int x, const int y) {
-	bool vit = map->getCellType(y, x) == 3; // Vitamina hace que devuelva true la función
+	bool vit = map->getCellType(y, x) == 3; // Vitamina hace que devuelva true la funciï¿½n
 	if (map->getCellType(y, x) == 3 || map->getCellType(y, x) == 2) { // 3: vitamina, 2: comida
 		foodLeft--; // Resta a la comida total
-		map->fillCell(y, x, 0); // Cambia la casilla a vacío
+		map->fillCell(y, x, 0); // Cambia la casilla a vacï¿½o
 	}
 	return vit;
 }
@@ -166,9 +220,9 @@ bool Game::collisionWithCharacter(int x, int y) {
 	return crush;
 
 		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
-		/// TODO: crush se pone a true si la posicion de algún fantasma coincide con x && y
+		/// TODO: crush se pone a true si la posicion de algï¿½n fantasma coincide con x && y
 
-		/// ESTO HABRÍA QUE SACARLO A GHOST Y PACMAN??
+		/// ESTO HABRï¿½A QUE SACARLO A GHOST Y PACMAN??
 		/// TODO: si crush es true y pacman tiene vitamina, ghost muere, si no pacman pierde vida
 }
 
