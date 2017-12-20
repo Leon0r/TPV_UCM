@@ -145,11 +145,14 @@ bool Game::cellEatable(const int x, const int y) {
 bool Game::collisionWithCharacter(int x, int y) {
 	bool crush = false;
 	int posX, posY;
-	for (auto c : characters) {
-		c->getPosAct(posX, posY);
+
+	list <GameCharacter*>::iterator it;
+	for (auto it = characters.begin(); it != characters.end(); ++it) {		
+		(*it)->getPosAct(posX, posY);
 		if (posX == x && posY == y)
 			crush = true;
 	}
+
 	return crush;
 
 		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales
