@@ -49,9 +49,9 @@ void Game::loadGame() {
 		}
 		// Carga pacman
 		pacman = new Pacman(this);
-		characters.push_back(pacman);// Crea un nuevo fantasma
+		characters.push_front(pacman);// Crea un nuevo fantasma
 		// como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-		characters.back()->loadCharacter(level, 10, 20, textures[1], this);
+		characters.front()->loadCharacter(level, 10, 20, textures[1], this);
 		
 		// asigna a los smart el target
 		for (auto c : characters)

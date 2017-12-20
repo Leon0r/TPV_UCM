@@ -16,7 +16,7 @@ protected:
 	par posIni; // Pos inicial del character para reiniciarla al morir
 	par posAct; // Pos actual del character
 	par dir; // Direccion actual del character
-	par posAux = { 0, 0 };
+	par posAux = { 0, 0 }; // Para calcular la posicion del toroide
 
 	par* targetPos = nullptr; // Posicion hacia la que se mueve
 
