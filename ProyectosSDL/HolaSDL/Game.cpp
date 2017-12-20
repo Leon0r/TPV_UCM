@@ -145,7 +145,7 @@ void Game::handleEvents() {
 	if (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT)
 			exit = true;
-		// Eventos de felchas de direcci�n
+		// Eventos de flechas de direccion
 		else if (event.type == SDL_KEYDOWN) {
 			if (event.key.keysym.sym == SDLK_UP)
 				pacman->nextDir(0, -1);
@@ -156,10 +156,9 @@ void Game::handleEvents() {
 			else if (event.key.keysym.sym == SDLK_RIGHT)
 				pacman->nextDir(1, 0);
 		}
-		else if (event.type == SDL_MOUSEBUTTONDOWN)
+		else if (menu && event.type == SDL_MOUSEBUTTONDOWN )
 			if (event.button.button == SDL_BUTTON_LEFT)
 			{
-				
 				int x, y;
 				SDL_GetMouseState(&x, &y);
 				if (((x > winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > winHeigth / 2 && y < winHeigth / 2 + 100))
@@ -167,8 +166,8 @@ void Game::handleEvents() {
 					//loadfromfile(getFileName());
 					menu = false;
 					cout << "Has pulsado";
-					}
-				else if ((x > (winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y >((winHeigth / 2) + 150) && y < ((winHeigth / 2) + 250))) {
+				}
+				else if ((x > (winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > ((winHeigth / 2) + 150) && y < ((winHeigth / 2) + 250))) {
 					//save = true;
 					menu = false;
 					cout << "Has pulsado";
