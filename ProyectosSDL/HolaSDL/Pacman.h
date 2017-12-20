@@ -37,5 +37,6 @@ public:
 	virtual void saveToFile(ofstream& level);
 	// Carga el pacman como tal
 	void loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game);
+	
 };
 
