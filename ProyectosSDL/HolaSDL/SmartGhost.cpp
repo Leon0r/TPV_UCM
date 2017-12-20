@@ -15,10 +15,23 @@ SmartGhost::~SmartGhost()
 void SmartGhost::update() {
 
 }
+
+// Lee los datos de archivo
 void SmartGhost::loadFromFile(ifstream& level) {
-	level >> edad;
+	level >> age;
 }
 
+// Guarda en archivo
 void SmartGhost::saveToFile(ofstream& level) {
-	level << edad;
+	level << age;
+}
+
+// Muerte "natural" de fantasma
+void SmartGhost::dieOld() {
+	if (age > DEATH_AGE) {
+		dead = true;
+		// dir a 0 para asegurar que se para
+		dir.x = 0;
+		dir.y = 0;
+	}
 }

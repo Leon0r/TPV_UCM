@@ -44,6 +44,8 @@ public:
 	// Devuelve true si la sig posicion en direccion dir es libre y la devuelve en nextPos la sig posicion calculada
 	bool sigPosToroideEsLibre(par dirAct, par& nextPos);
 	// Solo mira que en dir se pueda mover (para el random de fantasmas)
-	bool sigPosToroideEsLibre(par dirAct); 
+	bool sigPosToroideEsLibre(par dirAct);
+	// Reinicio de pos personaje al morir
+	virtual void die();
  };
 

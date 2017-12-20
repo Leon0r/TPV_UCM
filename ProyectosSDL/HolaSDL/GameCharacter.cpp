@@ -63,3 +63,9 @@ bool GameCharacter::sigPosToroideEsLibre(par dirAct, par& nextPos) {
 bool GameCharacter::sigPosToroideEsLibre(par dirAct) { 
 	return (game->nextCell(posAct.x, posAct.y, dirAct.x, dirAct.y)); 
 }
+
+// Reinicio de pos personaje al morir
+void GameCharacter::die(){
+	posAct.x = posIni.x;
+	posAct.y = posIni.y;
+}

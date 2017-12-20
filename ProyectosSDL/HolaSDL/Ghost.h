@@ -20,5 +20,6 @@ public:
 	virtual ~Ghost();
 
 	virtual void update();
+	
 };
 

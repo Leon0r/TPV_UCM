@@ -1,11 +1,15 @@
 #pragma once
 #include "Ghost.h"
 
+const int ADULT_AGE = 40; // edad a partir de la cual son adultos
+const int DEATH_AGE = 100; // edad a partir de la cual se mueren
+
 class SmartGhost :
 	public Ghost
 {
 private:
-	int edad;
+	int age = 0; // edad del fantasma
+	bool dead = false; // a true cuando se muere
 
 public:
 	SmartGhost();
@@ -13,8 +17,12 @@ public:
 
 	virtual ~SmartGhost();
 
-	virtual void SmartGhost::update();
-	virtual void SmartGhost::loadFromFile(ifstream& level);
-	virtual void SmartGhost::saveToFile(ofstream& level);
+	virtual void update();
+	// Lee los datos de archivo
+	virtual void loadFromFile(ifstream& level);
+	// Guarda en archivo
+	virtual void saveToFile(ofstream& level);
+	// Muerte "natural" de fantasma
+	void dieOld(); 
 };
 

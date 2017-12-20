@@ -72,3 +72,4 @@ void Ghost::possibleDirs() {
 		}
 	}
 }
+
