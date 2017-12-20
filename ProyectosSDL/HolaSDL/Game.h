@@ -1,7 +1,7 @@
 #pragma once
+#include "checkML.h"
 #include <list> // Para la lista de GameCharacters (si, existe en C++ a parecer)
 #include "GameMap.h"
-#include "GameCharacter.h"
 #include "Ghost.h"
 #include "Pacman.h"
 #include "Textures.h"
@@ -49,7 +49,7 @@ private:
 	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
 	// Eventos
-	SDL_Event* event = nullptr;
+	SDL_Event event;
 	bool exit = false;
 
 	void Game::Right(int& posX);
@@ -64,6 +64,8 @@ public:
 	void Game::loadGame();
 	// Dibuja el estado actual del juego
 	void Game::render();
+	// Actualiza el estado de los elementos
+	void Game::update();
 	// Bucle principal del juego
 	void Game::run();
 	// Se encarga de los eventos de teclado

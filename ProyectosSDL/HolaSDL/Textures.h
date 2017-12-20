@@ -28,9 +28,7 @@ private:
 public:
 	Textures();
 
-	~Textures() { free(); };
-
-	void Textures::free();
+	~Textures(); // Devolver todos los valores a 0};
 
 	// Carga textura de una imagen
 	bool Textures::loadTextureFromImage(SDL_Renderer* renderer, const char* filename, int numFils = 1, int numColumns = 1);

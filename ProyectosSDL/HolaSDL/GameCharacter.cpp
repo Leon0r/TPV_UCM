@@ -23,7 +23,7 @@ void GameCharacter::loadCharacter(ifstream& level, int esqTextX, int cellSize, T
 }
 
 void GameCharacter::update() {
-
+	sigPosToroideEsLibre(dir, posAct);
 }
 
 void GameCharacter::render() {

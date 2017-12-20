@@ -5,11 +5,10 @@ Textures::Textures()
 }
 
 // Destruye la textura y pone el puntero a null
-void Textures::free() {
-
+Textures::~Textures(){
 	SDL_DestroyTexture(texture);
 	texture = nullptr;
-	w = h = fw = fh = numCols = numRows = 0; // Devolver todos los valores a 0
+	w = h = fw = fh = numCols = numRows = 0; 
 }
 
 // Carga textura de una imagen
