@@ -30,5 +30,6 @@ public:
 	void setTarget(par* posPacman) { targetPos = posPacman; };
 	// De las dirs posibles, busca la que mas le acerque a Pacman
 	void searchDir();
+	
 };
 

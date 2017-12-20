@@ -9,7 +9,7 @@ class Pacman :
 {
 private:
 	
-	par dirNext;
+	par dirNext = { 0, 0 };
 
 	int lifes,
 		energy = ENERGY_VIT;

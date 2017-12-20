@@ -28,6 +28,7 @@ void Pacman::update() {
 	// Recarga energía al comerse una vitamina
 	if (game->cellEatable(posAct.x, posAct.y))
 		energy = ENERGY_VIT;
+	GameCharacter::update();
 }
 
 // Pierde una vida y vuelve a su posición inicial
@@ -81,5 +82,5 @@ void Pacman::saveToFile(ofstream& level) {
 
 // Carga el pacman como tal
 void Pacman::loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game) {
-	loadCharacter(level, esqTextX, cellSize, texture, game);
+	GameCharacter::loadCharacter(level, esqTextX, cellSize, texture, game);
 }

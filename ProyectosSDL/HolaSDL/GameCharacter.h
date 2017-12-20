@@ -16,6 +16,7 @@ protected:
 	par posIni; // Pos inicial del character para reiniciarla al morir
 	par posAct; // Pos actual del character
 	par dir; // Direccion actual del character
+	par posAux;
 
 	par frame; // Coordenadas en la textura del frame (esquina sup izquierda) concreto a renderizar
 	// Como todos los personajes tienen las animaciones colocadas igual, 

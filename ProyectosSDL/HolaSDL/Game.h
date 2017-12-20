@@ -3,6 +3,7 @@
 #include <list> // Para la lista de GameCharacters (si, existe en C++ a parecer)
 #include "GameMap.h"
 #include "Ghost.h"
+#include "SmartGhost.h"
 #include "Pacman.h"
 #include "Textures.h"
 

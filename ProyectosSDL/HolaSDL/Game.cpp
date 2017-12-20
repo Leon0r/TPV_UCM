@@ -47,7 +47,10 @@ void Game::loadGame() {
 			// Lee el tipo de fantasma que es
 			level >> typeGhost; // Si es 0, normal, si 1, evolucionado
 			if (typeGhost == 1) {
-				// Aqui se crearian los SmartGhost
+				//characters.push_back(new SmartGhost(this));// Crea un nuevo fantasma
+													  // como se ha hecho push back, el último obj de la lista es el fantasma creado
+				//characters.back()->loadCharacter(level, 8, 20, textures[1], this);
+				
 			}
 			else {
 				characters.push_back(new Ghost(this));// Crea un nuevo fantasma
@@ -55,6 +58,13 @@ void Game::loadGame() {
 				characters.back()->loadCharacter(level, 0, 20, textures[1], this); 
 			}
 		}
+		// Carga pacman
+		pacman = new Pacman(this);
+		characters.push_back(pacman);// Crea un nuevo fantasma
+		// como se ha hecho push back, el último obj de la lista es el fantasma creado
+		characters.back()->loadCharacter(level, 10, 20, textures[1], this);
+		
+
 
 		// Primero pintar fondo (mapa) y luego lo demas
 		map->render();
@@ -106,7 +116,7 @@ void Game::handleEvents() {
 		else if (event.key.keysym.sym == SDLK_LEFT)
 			pacman->nextDir(-1, 0);
 		else if (event.key.keysym.sym == SDLK_RIGHT)
-			pacman->nextDir(-1, 0);			
+			pacman->nextDir(1, 0);			
 	}
 }
 
@@ -145,14 +155,11 @@ bool Game::cellEatable(const int x, const int y) {
 bool Game::collisionWithCharacter(int x, int y) {
 	bool crush = false;
 	int posX, posY;
-
-	list <GameCharacter*>::iterator it;
-	for (auto it = characters.begin(); it != characters.end(); ++it) {		
-		(*it)->getPosAct(posX, posY);
+	for (auto c : characters) {
+		c->getPosAct(posX, posY);
 		if (posX == x && posY == y)
 			crush = true;
 	}
-
 	return crush;
 
 		/// TODO: Bucle que recorre los fantasmas para saber sus posiciones actuales

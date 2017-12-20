@@ -13,7 +13,8 @@ SmartGhost::~SmartGhost()
 }
 
 void SmartGhost::update() {
-
+	searchDir();
+	GameCharacter::update();
 }
 
 // Lee los datos de archivo
@@ -35,12 +36,27 @@ void SmartGhost::dieOld() {
 		dir.y = 0;
 	}
 }
+
 // De las dirs posibles, busca la que mas le acerque a Pacman
 void SmartGhost::searchDir() {
 	if (numDirs > 1) { // Solo busca dir si tiene más de una posibilidad
-		par dirAux;
-		for (int i = 0; i < numDirs; i++) {
-			if ()
+		int dirAux, i;
+		int dist = 3000;
+		int auxDistY, aux;
+		for (i = 0; i < numDirs; i++) {
+			// Calcula la coordenada que le deja mas cerca del pacman
+			aux = abs((posAct.x + dir.x) - targetPos->x);
+			auxDistY = abs((posAct.y + dir.x) - targetPos->y);
+			if (aux > auxDistY)
+				aux = auxDistY;
+			// Guarda la pos de la dir mas cercana
+			if (aux < dist) {
+				dist = aux;
+				dirAux = i; 
+			}
 		}
+		dir.x = directions[dirAux].x;
+		dir.y = directions[dirAux].y;
 	}
 }
+
