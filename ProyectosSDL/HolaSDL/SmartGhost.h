@@ -11,6 +11,8 @@ private:
 	int age = 0; // edad del fantasma
 	bool dead = false; // a true cuando se muere
 
+	par* targetPos = nullptr; // Posicion hacia la que se mueve
+
 public:
 	SmartGhost();
 	SmartGhost(Game* game);
@@ -24,5 +26,9 @@ public:
 	virtual void saveToFile(ofstream& level);
 	// Muerte "natural" de fantasma
 	void dieOld(); 
+	// Recibe la posicion hacia la que se tiene que mover
+	void setTarget(par* posPacman) { targetPos = posPacman; };
+	// De las dirs posibles, busca la que mas le acerque a Pacman
+	void searchDir();
 };
 

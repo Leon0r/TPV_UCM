@@ -24,6 +24,8 @@ void Ghost::chooseDir() {
 
 	// Busca las posibles dirs del fantasma
 	possibleDirs();
+	// Quita, si puede, la direccion de la que viene
+	eraseBackDir();
 
 	if (numDirs > 0) {
 		// Genera la posicion de la nueva direccion con el modulo del random que sale
@@ -57,9 +59,13 @@ void Ghost::possibleDirs() {
 			i++;
 	}
 
+	
+}
+// Quita, si puede, la direccion de la que viene
+void Ghost::eraseBackDir() {
 	// Elimina la direccion de la que viene si tiene mas direcciones posibles
 	if (numDirs > 1) {
-		i = 0; // reutiliza la variable contador del bucle anterior porque a esta altura no se necesita más
+		int i = 0; // reutiliza la variable contador del bucle anterior porque a esta altura no se necesita más
 
 			   // Busca la direccion contraria a la que viene y la descarta de igual forma que en el bucle anterior
 		while ((i<numDirs) && (directions[i].x != -dir.x || directions[i].y != -dir.y))
@@ -72,4 +78,3 @@ void Ghost::possibleDirs() {
 		}
 	}
 }
-

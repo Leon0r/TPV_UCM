@@ -35,3 +35,12 @@ void SmartGhost::dieOld() {
 		dir.y = 0;
 	}
 }
+// De las dirs posibles, busca la que mas le acerque a Pacman
+void SmartGhost::searchDir() {
+	if (numDirs > 1) { // Solo busca dir si tiene más de una posibilidad
+		par dirAux;
+		for (int i = 0; i < numDirs; i++) {
+			if ()
+		}
+	}
+}
