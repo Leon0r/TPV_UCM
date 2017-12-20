@@ -78,3 +78,7 @@ void Ghost::eraseBackDir() {
 		}
 	}
 }
+
+void Ghost::die() {
+
+}

@@ -21,5 +21,6 @@ public:
 
 	virtual void update();
 	
+	virtual void Ghost::die();
 };
 

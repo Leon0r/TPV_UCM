@@ -13,13 +13,12 @@ Pacman::~Pacman()
 
 // Actualiza el estado de PacMan (dirección y posición actual)
 void Pacman::update() {	
+	checkCollisions();
 	// Memoria de dirección: solo cambia si es distinta a la que lleva y puede moverse hacia esa posición
 	if ((dir.x != dirNext.x || dir.y != dirNext.y) && sigPosToroideEsLibre(dirNext)){
 		dir.x = dirNext.x;
 		dir.y = dirNext.y;
 	}
-	
-	checkCollisions();
 	
 	if (energy > 0)
 		energy -= 1;
@@ -28,16 +27,24 @@ void Pacman::update() {
 	if (game->cellEatable(posAct.x, posAct.y))
 		energy = ENERGY_VIT;
 	GameCharacter::update();
+	checkCollisions();
 }
 
 void Pacman::checkCollisions() {
 
 	list <GameCharacter*>::iterator it;
-	if (game->isAGhost(posAct.x + dirNext.x, posAct.y + dirNext.y, it) && energy == 0)
+	if (game->isAGhost(posAct.x, posAct.y, it) && energy == 0)
+	{
 		lessLife();
-
-	if (game->isAGhost(posAct.x + dirNext.x, posAct.y + dirNext.y, it) && energy > 0)
+		cout << "INUTIL.";
+	}
+	
+	if (game->isAGhost(posAct.x, posAct.y, it) && energy > 0) {
+		it--;
 		(*it)->die();
+		cout << (*it) << "ha muerto";
+	}
+
 }
 
 // Pierde una vida y vuelve a su posición inicial
