@@ -13,9 +13,11 @@ SmartGhost::~SmartGhost()
 }
 
 void SmartGhost::update() {
-	searchDir();
-	age++;
-	if (age > DEATH_AGE)
+	if (age < DEATH_AGE) {
+		searchDir();
+		age++;
+	}
+	else
 		dieOld();
 	GameCharacter::update();
 }
@@ -49,13 +51,18 @@ void SmartGhost::die() {
 void SmartGhost::searchDir() {
 	list <GameCharacter*>::iterator it;
 	possibleDirs();
+	
+	if (numDirs > 0) { // Solo busca dir si tiene m�s de una posibilidad
+		// Solo quita hacia atras si esta en cruces
+		// Principalmente es para que no parpadee en la celda donde empieza
+		if (numDirs > 2)
+			eraseBackDir();// Evita que vaya hacia atras
 
-	if (numDirs > 1) { // Solo busca dir si tiene m�s de una posibilidad
 		int dirAux, i;
 
 		int dist = 3000;
 		int aux;
-		for (i = 0; i < directions.size(); i++) {
+		for (i = 0; i < numDirs; i++) {
 			{
 				// Calcula la coordenada que le deja mas "cerca" del pacman
 				aux = abs((posAct.x + directions[i].x) - targetPos->x) +
@@ -73,7 +80,19 @@ void SmartGhost::searchDir() {
 
 		/// METODO A PARTE: 
 		///CAMBIAR A UN WHILE QUE VACIE LAS DIRECCIONES OTRA VEZ Y COMPRUEBE DONDE HAY LIBRE
-		/// UNA CASILLA Y AHÍ GIVEABIRTH
+		/// UNA CASILLA Y AHÍ GIVEABIRTH 
+		possibleDirs();
+		i = 0;
+		// Para cada direccion posible busca si hay algun fantasma
+		while (i < numDirs && !isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it)) {
+			i++;
+		}
+		// Si hay algun fantasma, es adulto y da probabilidad, nace otro en una de las dirs libres
+		if (i < numDirs && age >= ADULT_AGE && age <= DEATH_AGE && (rand() % 100 == 1)) {//
+			cout << "nace";
+			giveBirth();
+		}
+
 		/*for (int i = 0; i < directions.size(); i++) {
 			cout << endl << directions.size() << " "  << i << endl;
 			if (isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it))
@@ -86,10 +105,15 @@ void SmartGhost::giveBirth() {
 //	if (rand() % 10000 == 1){
 		SmartGhost* ghost = new SmartGhost();
 		ghost->age = 0;
-		ghost->dir = dir;
-		ghost->posAct = posAct;
+		// Para que vaya al contrario que el padre
+		ghost->dir.x = -dir.x;
+		ghost->dir.y = -dir.y;
+		//la posicion libre
+		ghost->posAct.x = posAct.x;
+		ghost->posAct.y = posAct.y;
 		ghost->game = game;
-		ghost->posIni = posAct;
+		ghost->posIni.x = ghost->posAct.x;
+		ghost->posAct.y = ghost->posAct.y;
 		ghost->targetPos = targetPos;
 		ghost->texture = texture;
 		game->newSmartGhost(ghost);

@@ -176,8 +176,8 @@ void Game::update() {
 		loadGame("..\\levels\\level02.pac", false);
 	}
 
-	system("CLS"); // Para limpiar la consola
-	cout << "Points: " << pacman->getPoints();
+	//system("CLS"); // Para limpiar la consola
+	//cout << "Points: " << pacman->getPoints();
 }
 
 // Se encarga de los eventos de teclado
@@ -211,12 +211,12 @@ void Game::handleEvents() {
 					loadGame("..\\levels\\level0" + file + ".pac", false);
 
 					menu = false;
-					cout << "Has pulsado";
+					//cout << "Has pulsado";
 				}
 				else if ((x > (winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > ((winHeigth / 2) + 150) && y < ((winHeigth / 2) + 250))) {
 					readFile();
 					menu = false;
-					cout << "Has pulsado";
+					//cout << "Has pulsado";
 				}
 			}
 	}
