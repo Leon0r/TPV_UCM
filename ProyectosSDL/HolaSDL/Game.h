@@ -10,7 +10,6 @@
 const int NUM_TEXTURES = 5;
 const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
 
-
 class Game
 {
 private:
@@ -31,6 +30,8 @@ private:
 	const int winHeigth = 600;
 	int winX,
 		winY;
+
+	int cellSize; // Tamaño de las celdas
 
 	// Struct con lo necesario para inicializar las texturas
 	struct infoText {

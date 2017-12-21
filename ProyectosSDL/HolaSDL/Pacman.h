@@ -11,8 +11,8 @@ private:
 
 	par dirNext = { 0, 0 };
 
-	int lifes,
-		energy = ENERGY_VIT;
+	int lifes = 3;
+	int	energy = 0;
 
 	bool switchAnim = false; // Cambio entre los dos frames de animaci�n
 
