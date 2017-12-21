@@ -39,7 +39,6 @@ void SmartGhost::dieOld() {
 	// dir a 0 para asegurar que se para
 	dir.x = 0;
 	dir.y = 0;
-
 }
 
 void SmartGhost::die() {
@@ -56,7 +55,7 @@ void SmartGhost::searchDir() {
 
 		int dist = 3000;
 		int aux;
-		for (i = 0; i < numDirs; i++) {
+		for (i = 0; i < directions.size(); i++) {
 			{
 				// Calcula la coordenada que le deja mas "cerca" del pacman
 				aux = abs((posAct.x + directions[i].x) - targetPos->x) +
@@ -72,14 +71,19 @@ void SmartGhost::searchDir() {
 		dir.x = directions[dirAux].x;
 		dir.y = directions[dirAux].y;
 
-		for (int i = 0; i < 4; i++)
+		/// METODO A PARTE: 
+		///CAMBIAR A UN WHILE QUE VACIE LAS DIRECCIONES OTRA VEZ Y COMPRUEBE DONDE HAY LIBRE
+		/// UNA CASILLA Y AHÍ GIVEABIRTH
+		/*for (int i = 0; i < directions.size(); i++) {
+			cout << endl << directions.size() << " "  << i << endl;
 			if (isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it))
 				giveBirth();
+		}*/
 	}
 }
 
 void SmartGhost::giveBirth() {
-	if (rand() % 10000 == 1){
+//	if (rand() % 10000 == 1){
 		SmartGhost* ghost = new SmartGhost();
 		ghost->age = 0;
 		ghost->dir = dir;
@@ -88,5 +92,6 @@ void SmartGhost::giveBirth() {
 		ghost->posIni = posAct;
 		ghost->targetPos = targetPos;
 		ghost->texture = texture;
-		game->newSmartGhost(ghost); }
+		game->newSmartGhost(ghost);
+//}
 }

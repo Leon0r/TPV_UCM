@@ -169,7 +169,7 @@ void Game::update() {
 
 	for (auto c : characters)
 		c->update();
-
+	
 	if (foodLeft <= 0) {
 		foodLeft = 0;
 		lvl++;

@@ -5,7 +5,7 @@
 
 
 const int ADULT_AGE = 40; // edad a partir de la cual son adultos
-const int DEATH_AGE = 100; // edad a partir de la cual se mueren
+const int DEATH_AGE = 100000; // edad a partir de la cual se mueren
 
 class SmartGhost :
 	public Ghost
