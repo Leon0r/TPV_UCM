@@ -1,5 +1,5 @@
 #include "Ghost.h"
-
+#include "Game.h"
 Ghost::Ghost():GameCharacter()
 {
 	// Inicializa el random para las direcciones
@@ -37,11 +37,13 @@ void Ghost::chooseDir() {
 
 // Busca las posibles dirs del fantasma
 void Ghost::possibleDirs() {
+	list <GameCharacter*>::iterator it;
 	numDirs = 4; // Empieza asumiendo que puede ir en cualquiera de las 4 direcciones
 	int i = 0;
 	while (i < numDirs) {
 
-		if (!sigPosToroideEsLibre(directions[i])) // Si la direccion que prueba no es válida (hay muro)
+		if (!sigPosToroideEsLibre(directions[i]))// &&
+			//isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it)) // Si la direccion que prueba no es válida (hay muro)
 		{
 			/*
 			Tiene todas las direcciones en el vector
@@ -61,6 +63,11 @@ void Ghost::possibleDirs() {
 
 	
 }
+
+bool Ghost::isGhost(int x, int y, list <GameCharacter*>::iterator &it) {
+	return game->isAGhost(x, y, it);
+}
+
 // Quita, si puede, la direccion de la que viene
 void Ghost::eraseBackDir() {
 	// Elimina la direccion de la que viene si tiene mas direcciones posibles
@@ -80,5 +87,5 @@ void Ghost::eraseBackDir() {
 }
 
 void Ghost::die() {
-
+	GameCharacter::die();
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <cmath>
+#include <list> 
 #include "Ghost.h"
+
 
 const int ADULT_AGE = 40; // edad a partir de la cual son adultos
 const int DEATH_AGE = 100; // edad a partir de la cual se mueren
@@ -27,6 +29,10 @@ public:
 	void dieOld(); 
 	// De las dirs posibles, busca la que mas le acerque a Pacman
 	void searchDir();
+
+	virtual void die();
+
+	void giveBirth();
 	
 };
 

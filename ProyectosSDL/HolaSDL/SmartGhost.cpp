@@ -1,5 +1,5 @@
 #include "SmartGhost.h"
-
+#include "Game.h"
 
 SmartGhost::SmartGhost()
 {
@@ -14,6 +14,9 @@ SmartGhost::~SmartGhost()
 
 void SmartGhost::update() {
 	searchDir();
+	age++;
+	if (age > DEATH_AGE)
+		dieOld();
 	GameCharacter::update();
 }
 
@@ -31,17 +34,21 @@ void SmartGhost::saveToFile(ofstream& level) {
 
 // Muerte "natural" de fantasma
 void SmartGhost::dieOld() {
-	if (age > DEATH_AGE) {
-		dead = true;
-		// dir a 0 para asegurar que se para
-		dir.x = 0;
-		dir.y = 0;
-	}
+
+	dead = true;
+	// dir a 0 para asegurar que se para
+	dir.x = 0;
+	dir.y = 0;
+
+}
+
+void SmartGhost::die() {
+	GameCharacter::die();
 }
 
 // De las dirs posibles, busca la que mas le acerque a Pacman
 void SmartGhost::searchDir() {
-
+	list <GameCharacter*>::iterator it;
 	possibleDirs();
 
 	if (numDirs > 1) { // Solo busca dir si tiene m�s de una posibilidad
@@ -50,13 +57,7 @@ void SmartGhost::searchDir() {
 		int dist = 3000;
 		int aux;
 		for (i = 0; i < numDirs; i++) {
-			/*if (posAct.x == targetPos->x) {
-
-			}
-			else if (posAct.y == targetPos->y) {
-
-			}
-			else */{
+			{
 				// Calcula la coordenada que le deja mas "cerca" del pacman
 				aux = abs((posAct.x + directions[i].x) - targetPos->x) +
 					abs((posAct.y + directions[i].y) - targetPos->y);
@@ -70,6 +71,22 @@ void SmartGhost::searchDir() {
 		}
 		dir.x = directions[dirAux].x;
 		dir.y = directions[dirAux].y;
+
+		for (int i = 0; i < 4; i++)
+			if (isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it))
+				giveBirth();
 	}
 }
 
+void SmartGhost::giveBirth() {
+	if (rand() % 10000 == 1){
+		SmartGhost* ghost = new SmartGhost();
+		ghost->age = 0;
+		ghost->dir = dir;
+		ghost->posAct = posAct;
+		ghost->game = game;
+		ghost->posIni = posAct;
+		ghost->targetPos = targetPos;
+		ghost->texture = texture;
+		game->newSmartGhost(ghost); }
+}

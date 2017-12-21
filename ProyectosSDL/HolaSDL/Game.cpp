@@ -270,6 +270,9 @@ bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it) {
 	return ghost;
 }
 
+void Game::newSmartGhost(SmartGhost* ghost ) {
+	characters.push_back(ghost);
+}
 // Guardar partida
 void Game::saveToFile() {
 	int name, numGhosts = 0;

@@ -95,6 +95,8 @@ public:
 	// Mira si en hay personaje en la pos (x,y)
 	bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it);
 
+	void Game::newSmartGhost(SmartGhost* ghost);
+
 	void Game::saveToFile();
 
 	void Game::readFile();
