@@ -2,7 +2,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "GameObject.h"
-
+class Game;
 class GameMap :
 	public GameObject
 {

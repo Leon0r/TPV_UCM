@@ -66,9 +66,12 @@ void Game::loadGame(string file, bool nuevo) {
 				characters.back()->loadCharacter(level, 0, cellSize, textures[4], this); 
 			}
 		}
-		// Carga pacman
-		pacman = new Pacman(this);
-		characters.push_front(pacman);// Crea un nuevo fantasma
+
+		if (lvl < 2) {
+			// Carga pacman
+			pacman = new Pacman(this);
+			characters.push_front(pacman);// Crea un nuevo fantasma
+		}
 		// como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
 		characters.front()->loadCharacter(level, 10, cellSize, textures[4], this);
 		if (nuevo) {
@@ -91,12 +94,7 @@ void Game::loadGame(string file, bool nuevo) {
 
 void Game::loadMenu() {
 	
-	winX = winY = SDL_WINDOWPOS_CENTERED;
-
-	SDL_Init(SDL_INIT_EVERYTHING);
-
-	window = SDL_CreateWindow("PACMAN", winX, winY, winWidth, winHeigth, SDL_WINDOW_SHOWN);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	
 
 	// Para ver si window se inicializa bien
 	if (window == nullptr || renderer == nullptr)
@@ -134,6 +132,16 @@ void Game::loadMenu() {
 
 // Bucle principal del juego
 void Game::run() {
+
+	if (window == nullptr || renderer == nullptr) {
+		winX = winY = SDL_WINDOWPOS_CENTERED;
+
+		SDL_Init(SDL_INIT_EVERYTHING);
+
+		window = SDL_CreateWindow("PACMAN", winX, winY, winWidth, winHeigth, SDL_WINDOW_SHOWN);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	}
+
 	loadMenu();
 	while(menu)
 		handleEvents();
@@ -158,8 +166,18 @@ void Game::render() {
 
 // Actualiza el estado de los elementos
 void Game::update() {
+
 	for (auto c : characters)
 		c->update();
+
+	if (foodLeft <= 0) {
+		foodLeft = 0;
+		lvl++;
+		loadGame("..\\levels\\level02.pac", false);
+	}
+
+	system("CLS"); // Para limpiar la consola
+	cout << "Points: " << pacman->getPoints();
 }
 
 // Se encarga de los eventos de teclado
@@ -188,9 +206,9 @@ void Game::handleEvents() {
 				if (((x > winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > winHeigth / 2 && y < winHeigth / 2 + 100))
 				{
 					ostringstream convert;
-					convert << 1;
+					convert << lvl;
 					string file = convert.str();
-					loadGame("..\\levels\\level" + file + ".pac", false);
+					loadGame("..\\levels\\level0" + file + ".pac", false);
 
 					menu = false;
 					cout << "Has pulsado";

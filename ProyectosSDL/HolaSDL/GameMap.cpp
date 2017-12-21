@@ -1,4 +1,5 @@
 #include "GameMap.h"
+#include "Game.h"
 
 GameMap::GameMap():GameObject(){
 }
@@ -14,7 +15,6 @@ GameMap::~GameMap()
 	delete map;
 }
 
-/// SON NECESARIOS LOS DOS ¿¿
 // Lee lo necesario del archivo level para cargar el mapa
 void GameMap::loadMap(ifstream& level, int cellSize, Textures* texture) {
 
@@ -49,6 +49,8 @@ void GameMap::loadFromFile(ifstream& level)
 		for (int j = 0; j < numColMap; j++) {
 			level >> type;
 			fillCell(i, j, type);
+			if (type >= 2)
+				game->addFood();
 		}
 	}
 }

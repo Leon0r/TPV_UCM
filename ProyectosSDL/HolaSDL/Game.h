@@ -54,7 +54,7 @@ private:
 	int posCharactPac; // Guarda la posicion del pacman en el vector
 	int finCharact; // Guarda el último elemento de los characters
 
-	int foodLeft;
+	int foodLeft = 0;
 
 	uint32_t startTime, frameTime; // Control del tiempo de repeticion del bucle
 
@@ -62,7 +62,7 @@ private:
 	SDL_Event event;
 	bool exit = false;
 	bool menu = true;
-	int lvl = 01;
+	int lvl = 1;
 
 	// Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
 	void Game::Right(int& posX);
@@ -98,5 +98,7 @@ public:
 	void Game::saveToFile();
 
 	void Game::readFile();
+
+	void Game::addFood() { foodLeft++; };
 };
 
