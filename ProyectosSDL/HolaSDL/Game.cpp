@@ -14,18 +14,38 @@ Game::~Game()
 	SDL_Quit();
 }
 
+void Game::readFile() { // Para partida guardada
+	int name;
+	cin >> name;
+	ostringstream convert;
+	convert << name;
+	string file = convert.str();
+	loadGame("..\\levels\\" + file + ".pac", true);
+}
+
 // Inicializa todos los atributos
-void Game::loadGame() {
+void Game::loadGame(string file, bool nuevo) {
+	
 	// Para ver si window se inicializa bien
 	if (window == nullptr || renderer == nullptr)
 		cout << "ERROR 404: window or renderer not found.";
 	else {
+		SDL_RenderClear(renderer);
+
 		// Inicializaci�n de texturas
 		// En el loadMenu()
 		// Inicializa el mapa con level01
-		ifstream level("..\\levels\\level01.pac");
+
+		ifstream level(file);
+		int p; // Puntos a añadir luego
+		if (nuevo) {
+			level >> lvl;
+			level >> p;
+		}
+
 		map = new GameMap(this);
-		map->loadMap(level, 20, textures[3]);
+		map->loadMap(level, cellSize, textures[3]);
+		
 		// Lee el n� de fantasmas
 		int numGhost, typeGhost;
 		level >> numGhost;
@@ -38,20 +58,22 @@ void Game::loadGame() {
 			if (typeGhost == 1) {
 				characters.push_back(new SmartGhost(this));// Crea un nuevo fantasma
 			  // como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-				characters.back()->loadCharacter(level, 8, 20, textures[4], this);
+				characters.back()->loadCharacter(level, 8, cellSize, textures[4], this);
 			}
 			else {
 				characters.push_back(new Ghost(this));// Crea un nuevo fantasma
 				  // como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-				characters.back()->loadCharacter(level, 0, 20, textures[4], this); 
+				characters.back()->loadCharacter(level, 0, cellSize, textures[4], this); 
 			}
 		}
 		// Carga pacman
 		pacman = new Pacman(this);
 		characters.push_front(pacman);// Crea un nuevo fantasma
 		// como se ha hecho push back, el �ltimo obj de la lista es el fantasma creado
-		characters.front()->loadCharacter(level, 10, 20, textures[4], this);
-		
+		characters.front()->loadCharacter(level, 10, cellSize, textures[4], this);
+		if (nuevo) {
+			pacman->addPoints(p);
+		}
 		// asigna a los smart el target
 		for (it = characters.begin(); it != characters.end(); ++it)
 			if(typeid (*(*it)) == typeid (SmartGhost))
@@ -68,6 +90,7 @@ void Game::loadGame() {
 }
 
 void Game::loadMenu() {
+	
 	winX = winY = SDL_WINDOWPOS_CENTERED;
 
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -114,8 +137,7 @@ void Game::run() {
 	loadMenu();
 	while(menu)
 		handleEvents();
-	
-	loadGame();
+
 	while (!exit) {
 		startTime = SDL_GetTicks();
 		handleEvents();
@@ -155,6 +177,8 @@ void Game::handleEvents() {
 				pacman->nextDir(-1, 0);
 			else if (event.key.keysym.sym == SDLK_RIGHT)
 				pacman->nextDir(1, 0);
+			else if (event.key.keysym.sym == SDLK_s) // para guardar
+				saveToFile();
 		}
 		else if (menu && event.type == SDL_MOUSEBUTTONDOWN )
 			if (event.button.button == SDL_BUTTON_LEFT)
@@ -163,12 +187,16 @@ void Game::handleEvents() {
 				SDL_GetMouseState(&x, &y);
 				if (((x > winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > winHeigth / 2 && y < winHeigth / 2 + 100))
 				{
-					//loadfromfile(getFileName());
+					ostringstream convert;
+					convert << 1;
+					string file = convert.str();
+					loadGame("..\\levels\\level" + file + ".pac", false);
+
 					menu = false;
 					cout << "Has pulsado";
 				}
 				else if ((x > (winWidth / 5 + 30) && x < (winWidth / 5 + 330)) && (y > ((winHeigth / 2) + 150) && y < ((winHeigth / 2) + 250))) {
-					//save = true;
+					readFile();
 					menu = false;
 					cout << "Has pulsado";
 				}
@@ -201,6 +229,7 @@ void Game::nextPosToroide(int& posX, int& posY, const int dirX, const int dirY) 
 bool Game::cellEatable(const int x, const int y) {
 	bool vit = map->getCellType(y, x) == 3; // Vitamina hace que devuelva true la funci�n
 	if (map->getCellType(y, x) == 3 || map->getCellType(y, x) == 2) { // 3: vitamina, 2: comida
+		pacman->addPoints(10);
 		foodLeft--; // Resta a la comida total
 		map->fillCell(y, x, 0); // Cambia la casilla a vac�o
 	}
@@ -221,6 +250,41 @@ bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it) {
 		it++;
 	}
 	return ghost;
+}
+
+// Guardar partida
+void Game::saveToFile() {
+	int name, numGhosts = 0;
+
+	cin >> name;
+	ostringstream convert;
+	convert << name;
+	string file = convert.str();
+
+	ofstream level("..\\levels\\" + file + ".pac");
+	level << lvl << " ";
+	level << pacman->getPoints() << endl;
+	map->saveToFile(level);
+
+	for (auto c : characters)
+		numGhosts++;
+	numGhosts--;
+
+	level << numGhosts << endl;
+
+	it = characters.begin();
+	for (it++; it != characters.end(); ++it) {
+		if (typeid (*(*it)) == typeid (SmartGhost))
+			level << "1 ";
+		else
+			level << "0 ";
+
+		(*it)->saveToFile(level);
+		level << endl;
+	}
+
+	characters.front()->saveToFile(level);
+	level.close();
 }
 
 // Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide

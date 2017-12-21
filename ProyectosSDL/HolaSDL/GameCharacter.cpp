@@ -29,7 +29,7 @@ void GameCharacter::update() {
 
 void GameCharacter::render() {
 	rectDest.x = rectDest.w*posAct.x;
-	rectDest.y = rectDest.h*posAct.y;
+	rectDest.y = rectDest.h*posAct.y + 100;
 
 	texture->renderFrame(rectDest, frame.y, frame.x);
 }

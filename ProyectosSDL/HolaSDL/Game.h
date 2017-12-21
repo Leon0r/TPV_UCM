@@ -1,6 +1,7 @@
 #pragma once
 #include "checkML.h"
 #include <list> // Para la lista de GameCharacters (si, existe en C++ a parecer)
+#include <sstream>
 #include "GameMap.h"
 #include "Ghost.h"
 #include "SmartGhost.h"
@@ -9,6 +10,7 @@
 
 const int NUM_TEXTURES = 5;
 const int FRAME_RATE = 100; // A menor tiempo de espera entre frames, mayor la velocidad del bucle
+const int MARGEN_SUP = 100;
 
 class Game
 {
@@ -31,7 +33,7 @@ private:
 	int winX,
 		winY;
 
-	int cellSize; // Tamaño de las celdas
+	int cellSize = 15; // Tamaño de las celdas
 
 	// Struct con lo necesario para inicializar las texturas
 	struct infoText {
@@ -60,6 +62,7 @@ private:
 	SDL_Event event;
 	bool exit = false;
 	bool menu = true;
+	int lvl = 01;
 
 	// Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
 	void Game::Right(int& posX);
@@ -72,7 +75,7 @@ public:
 	Game();
 	~Game();
 	// Inicializa todos los atributos
-	void Game::loadGame();
+	void Game::loadGame(string file, bool nuevo);
 
 	void Game::loadMenu();
 	// Bucle principal del juego
@@ -91,5 +94,9 @@ public:
 	bool Game::cellEatable(const int x, const int y);
 	// Mira si en hay personaje en la pos (x,y)
 	bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it);
+
+	void Game::saveToFile();
+
+	void Game::readFile();
 };
 

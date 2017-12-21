@@ -93,7 +93,8 @@ void Pacman::loadFromFile(ifstream& level) {
 
 // Guarda en un archivo la información del Pacman
 void Pacman::saveToFile(ofstream& level) {
-	level << energy << " " << lifes;
+	GameCharacter::saveToFile(level);
+	level <<" " << energy << " " << lifes;
 }
 
 // Carga el pacman como tal

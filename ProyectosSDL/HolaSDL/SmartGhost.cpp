@@ -25,7 +25,8 @@ void SmartGhost::loadFromFile(ifstream& level) {
 
 // Guarda en archivo
 void SmartGhost::saveToFile(ofstream& level) {
-	level << age;
+	GameCharacter::saveToFile(level);
+	level << " " << age;
 }
 
 // Muerte "natural" de fantasma

@@ -56,8 +56,8 @@ void GameMap::loadFromFile(ifstream& level)
 // Escribe los datos del mapa en el archivo level (solo los datos del mapa)
 void GameMap::saveToFile(ofstream& level)
 {
-	level << numRowMap;
-	level << numColMap;
+	level << numRowMap << " ";
+	level << numColMap << endl;
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
 
@@ -65,6 +65,7 @@ void GameMap::saveToFile(ofstream& level)
 		}
 		level << endl;
 	}
+	level << endl;
 }
 
 // Pinta el mapa en pantalla (renderCopy de las celdas)
@@ -74,7 +75,7 @@ void GameMap::render() {
 
 	for (int i = 0; i < numRowMap; i++) {
 		for (int j = 0; j < numColMap; j++) {
-			rectDest.y = cellSize * i;
+			rectDest.y = cellSize * i + 100;
 			rectDest.x = cellSize * j;
 			aux = static_cast<int>(map[i][j]); // Estan colocadas en el png para que sea el mismo orden (0=empty, etc)
 			texture->renderFrame(rectDest, aux, 0);

@@ -2,6 +2,7 @@
 #include "GameCharacter.h"
 
 const int ENERGY_VIT = 200;
+
 class Game;
 
 class Pacman :
@@ -13,6 +14,7 @@ private:
 
 	int lifes = 3;
 	int	energy = 0;
+	int points = 0;
 
 	bool switchAnim = false; // Cambio entre los dos frames de animaci�n
 
@@ -40,5 +42,7 @@ public:
 	// Carga el pacman como tal
 	void loadCharacter(ifstream& level, int esqTextX, int cellSize, Textures * texture, Game* game);
 	
+	int getPoints() { return points; };
+	void addPoints(int points) { Pacman::points += points; };
 };
 
