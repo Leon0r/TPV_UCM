@@ -13,13 +13,16 @@ SmartGhost::~SmartGhost()
 }
 
 void SmartGhost::update() {
-	if (age < DEATH_AGE) {
+	age++;
+	if (age < ADULT_AGE)
+		Ghost::update();
+	else if (age < DEATH_AGE) {
 		searchDir();
-		age++;
+		GameCharacter::update();
 	}
 	else
 		dieOld();
-	GameCharacter::update();
+
 }
 
 // Lee los datos de archivo
@@ -78,31 +81,22 @@ void SmartGhost::searchDir() {
 		dir.x = directions[dirAux].x;
 		dir.y = directions[dirAux].y;
 
-		/// METODO A PARTE: 
-		///CAMBIAR A UN WHILE QUE VACIE LAS DIRECCIONES OTRA VEZ Y COMPRUEBE DONDE HAY LIBRE
-		/// UNA CASILLA Y AHÍ GIVEABIRTH 
 		possibleDirs();
+
 		i = 0;
 		// Para cada direccion posible busca si hay algun fantasma
 		while (i < numDirs && !isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it)) {
 			i++;
 		}
 		// Si hay algun fantasma, es adulto y da probabilidad, nace otro en una de las dirs libres
-		if (i < numDirs && age >= ADULT_AGE && age <= DEATH_AGE ) {//&& (rand() % 10 == 1)
+		if (i < numDirs && age >= ADULT_AGE && age <= DEATH_AGE && (game->numGhostScreen() < 6)  && (rand() % 100 == 1)) {
 			cout << "nace";
 			giveBirth();
 		}
-
-		/*for (int i = 0; i < directions.size(); i++) {
-			cout << endl << directions.size() << " "  << i << endl;
-			if (isGhost(posAct.x + directions[i].x, posAct.y + directions[i].y, it))
-				giveBirth();
-		}*/
 	}
 }
 
 void SmartGhost::giveBirth() {
-//	if (rand() % 10000 == 1){
 		SmartGhost* ghost = new SmartGhost();
 		ghost->age = 0;
 		// Para que vaya al contrario que el padre
@@ -119,6 +113,7 @@ void SmartGhost::giveBirth() {
 		ghost->rectDest.h = ghost->cellSize;
 		ghost->rectDest.w = ghost->cellSize;
 		ghost->texture = texture;
+		ghost->frame.x = 8;
+		ghost->frame.y = 0;
 		game->newSmartGhost(ghost);
-//}
 }

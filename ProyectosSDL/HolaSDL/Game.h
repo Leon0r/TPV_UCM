@@ -21,8 +21,6 @@ private:
 	Pacman* pacman = nullptr;
 	SmartGhost* smartGhost = nullptr;
 
-
-
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	Textures* textures[NUM_TEXTURES]; // Array de las texturas del juego
@@ -102,5 +100,7 @@ public:
 	void Game::readFile();
 
 	void Game::addFood() { foodLeft++; };
+
+	int Game::numGhostScreen();
 };
 

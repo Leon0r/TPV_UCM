@@ -20,8 +20,6 @@ public:
 	GameMap(Game* game);
 	virtual ~GameMap();
 
- 
-
 	// Devuelve el tipo de la celda													
 	int getCellType(int row, int col) {return(static_cast<int>(map[row][col]));};
 	// Devuelve el numero de filas que hay en el mapa
@@ -32,7 +30,6 @@ public:
 	// Rellena una celda con el tipo type
 	void fillCell(int row, int col, int type);
 
-	/// SON NECESARIOS LOS DOS ¿¿
 	// Lee lo necesario del archivo level para cargar el mapa
 	void loadMap(ifstream& level, int cellSize, Textures* texture); 
 	// Lee lo necesario del archivo level para cargar el mapa

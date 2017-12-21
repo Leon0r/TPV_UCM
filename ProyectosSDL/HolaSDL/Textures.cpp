@@ -15,7 +15,7 @@ Textures::~Textures() {
 bool Textures::loadTextureFromImage(SDL_Renderer* renderer, const char* filename, int numFils, int numColumns) {
 	textRender = renderer; // Para que la textura apunte al renderer del juego y no haya que pasarlo m�s veces al renderizar
 
-						   // Cargar textura
+	// Cargar textura
 	SDL_Surface* surface = IMG_Load(filename); // Cargar imagen
 
 	if (surface != nullptr) { // Comprobar que la imagen se ha cargado en surface

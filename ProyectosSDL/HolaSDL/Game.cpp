@@ -9,6 +9,9 @@ Game::~Game()
 	for (int i = 0; i < NUM_TEXTURES; i++)
 		delete textures[i];
 
+	for (it = characters.begin(); it != characters.end(); ++it)
+			delete(*it);
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -176,8 +179,8 @@ void Game::update() {
 		loadGame("..\\levels\\level02.pac", false);
 	}
 
-	//system("CLS"); // Para limpiar la consola
-	//cout << "Points: " << pacman->getPoints();
+	system("CLS"); // Para limpiar la consola
+	cout << "Points: " << pacman->getPoints();
 }
 
 // Se encarga de los eventos de teclado
@@ -307,6 +310,14 @@ void Game::saveToFile() {
 
 	characters.front()->saveToFile(level);
 	level.close();
+}
+
+int Game::numGhostScreen() {
+	int num = -1;
+	for (auto c : characters) {
+		num++;
+	}
+	return num;
 }
 
 // Metodos auxiliares para calcular la sig pos teniendo en cuenta el toroide
