@@ -159,16 +159,16 @@ void Game::run() {
 // Dibuja el estado actual del juego
 void Game::render() {
 	map->render();
-	for (auto c : characters)
-		c->render();
+	for (it = characters.begin(); it != characters.end(); ++it)
+			(*it)->render();
 	SDL_RenderPresent(renderer);
 }
 
 // Actualiza el estado de los elementos
 void Game::update() {
 
-	for (auto c : characters)
-		c->update();
+	for (it = characters.begin(); it != characters.end(); ++it)
+		(*it)->update();
 	
 	if (foodLeft <= 0) {
 		foodLeft = 0;
@@ -272,6 +272,7 @@ bool Game::isAGhost(int x, int y, list <GameCharacter*>::iterator &it) {
 
 void Game::newSmartGhost(SmartGhost* ghost ) {
 	characters.push_back(ghost);
+	characters.back()->render();
 }
 // Guardar partida
 void Game::saveToFile() {

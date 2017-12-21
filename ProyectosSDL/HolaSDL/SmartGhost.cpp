@@ -88,7 +88,7 @@ void SmartGhost::searchDir() {
 			i++;
 		}
 		// Si hay algun fantasma, es adulto y da probabilidad, nace otro en una de las dirs libres
-		if (i < numDirs && age >= ADULT_AGE && age <= DEATH_AGE && (rand() % 100 == 1)) {//
+		if (i < numDirs && age >= ADULT_AGE && age <= DEATH_AGE ) {//&& (rand() % 10 == 1)
 			cout << "nace";
 			giveBirth();
 		}
@@ -109,12 +109,15 @@ void SmartGhost::giveBirth() {
 		ghost->dir.x = -dir.x;
 		ghost->dir.y = -dir.y;
 		//la posicion libre
-		ghost->posAct.x = posAct.x;
-		ghost->posAct.y = posAct.y;
+		ghost->posAct.x = 1;
+		ghost->posAct.y = 1;
 		ghost->game = game;
 		ghost->posIni.x = ghost->posAct.x;
 		ghost->posAct.y = ghost->posAct.y;
 		ghost->targetPos = targetPos;
+		ghost->cellSize = 15;
+		ghost->rectDest.h = ghost->cellSize;
+		ghost->rectDest.w = ghost->cellSize;
 		ghost->texture = texture;
 		game->newSmartGhost(ghost);
 //}
